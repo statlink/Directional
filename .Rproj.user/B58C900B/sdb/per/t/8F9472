@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "################################\n#### Kernel density estimation of circular data with a von Mises kernel\n#### Tsagris Michail 2/2015\n#### mtsagris@yahoo.gr\n#### Garcia-Portugues E. (2013)\n#### Exact risk improvement of bandwidth selectors for kernel\n#### density estimation with directional data\n#### Electronic Journal of Statistics\n################################\nvmf.kde <- function(x, h = NULL, thumb = \"none\") {\n  ## x is the data\n  ## h is the bandwidth you want\n  p <- dim(x)[2]  ## dimensionality of the data\n  n <- dim(x)[1]  ## sample size of the data\n  ## thumb is either 'none' (defualt), or 'rot' (Garcia-Portugues, 2013)\n  if ( !is.null(h) ) {\n\n    if (thumb == \"rot\") {\n      k <- vmf(x)$kappa  ## concentration parameter\n      q <- p - 1\n      if (q == 2)  h <- ( 8 * sinh(k)^2 / ( k * n * ( (1 + 4 * k^2) * sinh(2 * k) -  2 * k * cosh(2 * k) ) ) )^(1/6)\n      if (q >= 3) {\n        up <- 4 * pi^0.5 * besselI(k, (q - 1)/2)^2\n        down <- k^( (q + 1)/2) * n * (2 * q * besselI(2 * k, (q + 1)/2) +  (2 + q) * k * besselI(2 * k, (q + 3)/2) )\n        h <- ( up/down ) ^ ( 1/(4 + q) )\n      }\n\n    } else if (thumb == \"none\")  h <- as.numeric( vmfkde.tune(x, low = 0.1, up = 1)[1] )\n\n  } else h <- h\n\n  d <- tcrossprod( x )/h^2\n  cpk <- (1/h^2)^( p/2 - 1) / ( (2 * pi) ^ (p/2) * besselI(1/h^2, p/2 - 1) )\n  f <- Rfast::rowmeans( exp(d) ) * cpk\n  list( h = h, f = f )\n}\n",
+    "created" : 1510305173148.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4254372972",
+    "id" : "8F9472",
+    "lastKnownWriteTime" : 1510305344,
+    "last_content_update" : 1510305343493,
+    "path" : "F:/paketo/Directional statistics/Directional/R/vmf.kde.R",
+    "project_path" : "R/vmf.kde.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

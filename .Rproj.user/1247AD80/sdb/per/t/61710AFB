@@ -1,0 +1,16 @@
+{
+    "contents" : "Package: Directional\nType: Package\nTitle: Directional Statistics\nVersion: 2.4\nURL:\nDate: 2016-08-28\nAuthor: Michail Tsagris, Giorgos Athineou, Anamul Sajib\nMaintainer: Michail Tsagris <mtsagris@yahoo.gr>\nDescription: A collection of R functions for directional data analysis.\nLicense: GPL-2\nImports:\n          MASS,\n          doParallel,\n          parallel,\n          foreach,\n          Rfast,\n\t\t  RcppZiggurat\n\n",
+    "created" : 1472377586880.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "431605380",
+    "id" : "61710AFB",
+    "lastKnownWriteTime" : 1472377592,
+    "path" : "D:/paketo/Directional statistics/Directional/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "dcf"
+}

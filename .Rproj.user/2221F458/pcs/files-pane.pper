@@ -1,0 +1,13 @@
+{
+    "path" : "C:/Users/user/Desktop/Folder/paketo/Directional statistics/Directional/man",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        },
+        {
+            "ascending" : false,
+            "columnIndex" : 4
+        }
+    ]
+}
