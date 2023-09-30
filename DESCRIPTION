@@ -2,7 +2,6 @@ Package: Directional
 Type: Package
 Title: A Collection of Functions for Directional Data Analysis
 Version: 6.3
-URL:
 Date: 2023-09-19
 Author: Michail Tsagris, Giorgos Athineou, Christos Adam, Anamul Sajib, Eli Amson, Micah J. Waldstein
 Maintainer: Michail Tsagris <mtsagris@uoc.gr>
