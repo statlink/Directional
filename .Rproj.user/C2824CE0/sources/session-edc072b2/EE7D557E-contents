@@ -1,19 +1,26 @@
-purka.contour <- function(theta, a, lat = 50, long = 50) {
-  m <- Directional::euclid.inv(theta)
-  x1 <- x2 <- seq(0, 180, by = 2)
-  x1 <- seq(m[1] - lat, m[1] + lat)
-  x2 <- seq(m[2] - long, m[2] + long)
-  n <- length(x1)
-
-  wa <- NULL
-  for ( i in 1:n ) {
-    w1 <- cbind(x1[i], x2)
-    wa <- rbind(wa, w1)
-  }
-
-  wa <- Directional::euclid(wa)
-  mat <- Directional::dpurka(wa, theta, a)
-  mat <- matrix(mat, nrow = n, byrow = TRUE)
+ ################################
+#### Contour plots of the Kent distribution on the sphere
+#### Tsagris Michail 06/2014
+#### mtsagris@yahoo.gr
+################################
+kent.contour <- function(k, b) {
+  ## k is the concentration parameter
+  ## b is the ovalness parameter
+  ## b must be less than k/2
+  gam <- c(0, k, 0)
+  lam <- c(0, -b, b)
+  con <- Directional::fb.saddle(gam, lam)[3]
+  rho <- sqrt(2)
+  x <- seq(-rho, rho, by = 0.01)
+  n <- length(x)
+  mat1 <- matrix(rep(x^2, n), ncol = n)
+  mat2 <- t(mat1)
+  z <- sqrt( mat1 + mat2 )
+  ind <- ( z^2 < rho^2 )  ## checks if x^2+y^2 < rho^2
+  ind[ !ind ] <- NA
+  theta <- 2 * asin(0.5 * z)
+  xa <- k * cos(theta) + b * (mat1 - mat2) - con
+  mat <- exp(xa) * ind
 
   # Continuous color legend
   # Note that it disappears EVERY BLACK LINE!!!!!!
@@ -23,22 +30,22 @@ purka.contour <- function(theta, a, lat = 50, long = 50) {
   par(fg = NA)
 
   # Filled contoure plot in base R
-  filled.contour(x1, x2, mat,
+  filled.contour(x, x, mat,
                  # Number of levels
                  # the greater the more interpolate
                  nlevels = 200,
                  # Select color function
-                 color.palette = colorRampPalette( c( "blue",
-                                                      "cyan",
-                                                      "yellow",
-                                                      "red") ),
+                  color.palette = colorRampPalette( c( "blue",
+                                                       "cyan",
+                                                       "yellow",
+                                                       "red") ),
                  # Adjust axes to points
                  plot.axes = {
                    # # Add points
                    #   points(u[, 1], u[, 2],
                    #          col = "black");
                    # Add contour lines
-                   contour(x1, x2, mat,
+                   contour(x, x, mat,
                            # Color of contour lines
                            # Otherwise par(fg = NA) will
                            # disappear them...

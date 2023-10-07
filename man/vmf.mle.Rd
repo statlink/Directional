@@ -132,7 +132,8 @@ Mardia K. V. and Jupp P. E. (2000). Directional statistics. Chicester: John Wile
 Sra S. (2012). A short note on parameter approximation for von Mises-Fisher distributions:
 and a fast implementation of \eqn{I_s(x)}. Computational Statistics, 27(1): 177--190.
 
-Tyler D. E. (1987). Statistical analysis for the angular central Gaussian distribution on the sphere. Biometrika 74(3): 579--589.
+Tyler D. E. (1987). Statistical analysis for the angular central Gaussian 
+distribution on the sphere. Biometrika 74(3): 579--589.
 
 Paine P.J., Preston S.P., Tsagris M. and Wood A.T.A. (2018). An Elliptically Symmetric
 Angular Gaussian Distribution. Statistics and Computing, 28: 689--697.
@@ -144,14 +145,14 @@ https://arxiv.org/pdf/2302.02468.pdf
 Kato S. and McCullagh P. (2018). Mobius transformation and a Cauchy family on the sphere.
 arXiv preprint arXiv:1510.07679.
 
-Kato S. & McCullagh P. (2020). Some properties of a Cauchy family on the sphere derived
+Kato S. and McCullagh P. (2020). Some properties of a Cauchy family on the sphere derived
 from the Mobius transformations. Bernoulli, 26(4): 3224--3248.
 
-Golzy M. & Markatou M. (2020). Poisson kernel-based clustering on the sphere:
+Golzy M. and Markatou M. (2020). Poisson kernel-based clustering on the sphere:
 convergence properties, identifiability, and a method of sampling.
 Journal of Computational and GraphicalStatistics, 29(4): 758--770.
 
-Sablica L., Hornik K. & Leydold J. (2023). Efficient sampling from the PKBD distribution.
+Sablica L., Hornik K. and Leydold J. (2023). Efficient sampling from the PKBD distribution.
 Electronic Journal of Statistics, 17(2): 2180--2209.
 }
 

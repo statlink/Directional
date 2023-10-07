@@ -48,8 +48,8 @@ A character vector with two elements.
 }
 
 \references{
-Rivest L. P. (1986). Modified Kent's statistics for testing goodness of fit for the Fisher distribution in small concentrated samples.
-Statistics & Probability Letters, 4(1): 1--4.
+Rivest L. P. (1986). Modified Kent's statistics for testing goodness of fit for the Fisher distribution 
+in small concentrated samples. Statistics & Probability Letters, 4(1): 1--4.
 }
 
 \author{

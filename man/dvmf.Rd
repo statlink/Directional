@@ -63,13 +63,13 @@ Cabrera J. and Watson G. S. (1990). On a spherical median related distribution. 
 
 Kato S. and McCullagh P. (2018). Mobius transformation and a Cauchy family on the sphere. arXiv preprint arXiv:1510.07679.
 
-Kato S. & McCullagh P. (2020). Some properties of a Cauchy family on the sphere derived from the Mobius transformations. Bernoulli, 26(4): 3224--3248.
+Kato S. and McCullagh P. (2020). Some properties of a Cauchy family on the sphere derived from the Mobius transformations. Bernoulli, 26(4): 3224--3248.
 
-Golzy M. & Markatou M. (2020). Poisson kernel-based clustering on the sphere:
+Golzy M. and Markatou M. (2020). Poisson kernel-based clustering on the sphere:
 convergence properties, identifiability, and a method of sampling.
 Journal of Computational and GraphicalStatistics, 29(4): 758--770.
 
-Sablica L., Hornik K. & Leydold J. (2023). Efficient sampling from the PKBD distribution.
+Sablica L., Hornik K. and Leydold J. (2023). Efficient sampling from the PKBD distribution.
 Electronic Journal of Statistics, 17(2): 2180--2209.
 }
 

@@ -38,7 +38,7 @@ A matrix with the simulated data.
 Wood A.T.A. (1994). Simulation of the von Mises Fisher distribution. 
 Communications in Statistics-Simulation and Computation, 23(1): 157--164.
 
-Dhillon I. S. & Sra S. (2003). Modeling data using directional distributions. 
+Dhillon I. S. and Sra S. (2003). Modeling data using directional distributions. 
 Technical Report TR-03-06, Department of Computer Sciences, The University of Texas at Austin.
 http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.75.4122&rep=rep1&type=pdf
 }
