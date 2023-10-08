@@ -44,7 +44,7 @@ A new method to simulate the Bingham and related distributions
 in directional data analysis with applications.
 http://arxiv.org/pdf/1310.8110v1.pdf
 
-Fallaize C. J. & Kypraios T. (2016). Exact bayesian inference for the Bingham distribution. 
+Fallaize C. J. and Kypraios T. (2016). Exact bayesian inference for the Bingham distribution. 
 Statistics and Computing, 26(1): 349--360.
 http://arxiv.org/pdf/1401.2894v1.pdf
 }

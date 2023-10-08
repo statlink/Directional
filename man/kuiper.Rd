@@ -55,7 +55,7 @@ A character vector with two elements.
 
 
 \references{
-Jammalamadaka, S. Rao and SenGupta, A. (2001). Topics in Circular Statistics, pg. 153--55 (Kuiper's test) & 156--157 (Watson's test).
+Jammalamadaka, S. Rao and SenGupta, A. (2001). Topics in Circular Statistics, pg. 153--55 (Kuiper's test) and pg. 156--157 (Watson's test).
 }
 
 \author{
