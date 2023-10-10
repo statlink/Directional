@@ -3,23 +3,33 @@ pkbd.mle <- function(x, tol = 1e-6) {
   dm <- dim(x)
   n <- dm[1]  ;  d <- dm[2]
 
-  pkbd <- function(para, x, n, d) {
-    rho <- 1 / ( 1 + exp(-para[1]) )
-    mu <- para[-1]
-    mu <- mu / sqrt( sum(mu^2) )
+  pkbd <- function(rho, mu, x, n, d) {
     a <- as.vector(x %*% mu)
-    - n * log( 1 - rho^2 ) + 0.5 * d * sum( log1p( rho^2 - 2 * rho * a ) )
+    n * log( 1 - rho^2 ) - 0.5 * d * sum( log1p( rho^2 - 2 * rho * a ) )
+  }
+    
+  mu <- Rfast::colmeans(x)
+  mu <- mu / sqrt(sum(mu^2) )
+  mod <- optimize(pkbd, c(0, 1), mu = mu, x = x, n = n, d = d, maximum = TRUE, tol = 1e-6 )
+  rho <- mod$maximum  
+  lik1 <- mod$objective
+
+  down <- 1 + rho^2 - 2 * rho * as.vector( x %*% mu) 
+  mu <- Rfast::eachcol.apply(rho * x, down, oper = "/")
+  mu <- mu / sqrt( sum(mu^2) )
+  mod <- optimize(pkbd, c(0, 1), mu = mu, x = x, n = n, d = d, maximum = TRUE, tol = 1e-6 )
+  rho <- mod$maximum  
+  lik2 <- mod$objective
+  
+  while ( abs( lik2 - lik1 ) > tol ) {
+    lik1 <- lik2
+    down <- 1 + rho^2 - 2 * rho * as.vector( x %*% mu) 
+    mu <- Rfast::eachcol.apply(rho * x, down, oper = "/")
+    mu <- mu / sqrt( sum(mu^2) )
+    mod <- optimize(pkbd, c(0, 1), mu = mu, x = x, n = n, d = d, maximum = TRUE, tol = 1e-6 )
+    rho <- mod$maximum  
+    lik2 <- mod$objective
   }
 
-  m1 <- optim( c( runif(1), rnorm(d) ), pkbd, x = x, n = n, d = d, control = list(maxit = 5000) )
-  m2 <- optim( m1$par, pkbd, x = x, n = n, d = d, control = list(maxit = 5000) )
-  while (m1$value - m2$value > tol) {
-    m1 <- m2
-    m2 <- optim( m1$par, pkbd, x = x, n = n, d = d, control = list(maxit = 5000) )
-  }
-  rho <- 1 / ( 1 + exp( -m2$par[1] ) )
-  mu <- m2$par[-1]
-  mu <- mu / sqrt( sum(mu^2) )
-  loglik <- -m2$value
-  list(mu = mu, rho = rho, loglik = loglik)
+  list(mu = mu, rho = rho, loglik = lik2)
 }
