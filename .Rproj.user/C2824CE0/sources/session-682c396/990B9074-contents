@@ -1,7 +1,7 @@
 pkbd.mle <- function(x, tol = 1e-6) {
 
   dm <- dim(x)
-  n <- dm[1]  ;  d <- dm[2] - 1
+  n <- dm[1]  ;  d <- dm[2]
 
   pkbd <- function(rho, mu, x, n, d) {
     a <- as.vector(x %*% mu)

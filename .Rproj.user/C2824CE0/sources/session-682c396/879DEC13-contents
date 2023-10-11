@@ -15,13 +15,5 @@ mu <- qa$par[-1]
 mu <- mu / sqrt(sum(mu^2) )
 mu
 
-pkbd <- function(rho, mu, x, n, d) {
-  a <- as.vector(x %*% mu)
-  n * log( 1 - rho^2 ) - 0.5 * d * sum( log1p( rho^2 - 2 * rho * a ) )
-}
-
-rho <- seq(0, 0.99, by = 0.01)
-y = pkbd(rho, mu, x, n, d)
-plot(rho, y)
 
 
