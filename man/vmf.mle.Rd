@@ -142,15 +142,13 @@ Tsagris M. and Alzeley O. (2023). Circular and spherical projected Cauchy distri
 A Novel Framework for Circular and Directional Data Modeling.
 https://arxiv.org/pdf/2302.02468.pdf
 
-Kato S. and McCullagh P. (2018). Mobius transformation and a Cauchy family on the sphere.
-arXiv preprint arXiv:1510.07679.
-
-Kato S. and McCullagh P. (2020). Some properties of a Cauchy family on the sphere derived
-from the Mobius transformations. Bernoulli, 26(4): 3224--3248.
+Kato S. and McCullagh P. (2020). Some properties of a Cauchy family on the sphere derived from the Mobius transformations. 
+Bernoulli, 26(4): 3224--3248.
+https://arxiv.org/pdf/1510.07679.pdf
 
 Golzy M. and Markatou M. (2020). Poisson kernel-based clustering on the sphere:
 convergence properties, identifiability, and a method of sampling.
-Journal of Computational and GraphicalStatistics, 29(4): 758--770.
+Journal of Computational and Graphical Statistics, 29(4): 758--770.
 
 Sablica L., Hornik K. and Leydold J. (2023). Efficient sampling from the PKBD distribution.
 Electronic Journal of Statistics, 17(2): 2180--2209.
