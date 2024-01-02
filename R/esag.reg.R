@@ -67,7 +67,8 @@ esag.reg <- function(y, x, con = TRUE, xnew = NULL, lati = 10, longi = 10, tol =
     - 0.5 * sum(a2) + 0.5 * sum(rl) + 1.5 * sum( log(g1) ) - sum( log(M2) )
   }
 
-  ini <- rnorm( 3 * dim(x)[2] + 2 )
+  ini <- lm.fit(x, y)$coefficients  
+  ini <- c( rnorm(2), ini)
   val1 <- optim( ini, reg2, y = y, x = x, za = za, control = list(maxit = 5000))
   val2 <- optim(val1$par, reg2, y = y, x = x, za = za, control = list(maxit = 5000))
   while (val1$value - val2$value > 1e-06) {
