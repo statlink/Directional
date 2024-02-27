@@ -1,14 +1,14 @@
 \name{Cumulative distribution function of circular distributions}
 \alias{pvm}
-\alias{pmmvm}
 \alias{pcircexp}
+\alias{pmmvm}
 \alias{pcircpurka}
 \title{
 Cumulative distribution function of circular distributions
 }
 
 \description{
-Cumulative probability distribution of circular distributions.
+Probability distribution of circular distributions.
 }
 
 \usage{
@@ -79,7 +79,6 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 \seealso{
 \code{\link{group.gof}, \link{dvm}, \link{dcircexp},
 \link{purka.mle}, \link{dcircpurka}, \link{dmmvm}
-}
 }
 
 \examples{

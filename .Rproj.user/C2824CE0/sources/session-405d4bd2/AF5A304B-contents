@@ -1,21 +1,19 @@
 \name{Cumulative distribution function of circular distributions}
 \alias{pvm}
-\alias{pmmvm}
 \alias{pcircexp}
-\alias{pcircpurka}
+\alias{pmmvm}
 \title{
 Cumulative distribution function of circular distributions
 }
 
 \description{
-Cumulative probability distribution of circular distributions.
+Probability distribution of circular distributions.
 }
 
 \usage{
 pvm(u, m, k, rads = FALSE)
-pmmvm(u, m, k, N, rads = FALSE)
+pvm(u, m, k, N, rads = FALSE)
 pcircexp(u, lambda, rads = FALSE)
-pcircpurka(u, m, a, rads = FALSE)
 }
 
 \arguments{
@@ -28,14 +26,11 @@ The mean direction of the von Mises and the multi-modal von Mises distribution i
 \item{k}{
 The concentration parameter, \eqn{\kappa}.
 }
-\item{lambda}{
-The \eqn{\lambda} parameter of the circular exponential distribution. This must be positive.
-}
 \item{N}{
 The number of modes to consider in the multi-modal von Mises distribution.
 }
-\item{a}{
-The \eqn{\alpha} parameter of the circular Purkayastha distribution.
+\item{lambda}{
+The \eqn{\lambda} parameter of the circular exponential distribution. This must be positive.
 }
 \item{rads}{
 If the data are in radians, this should be TRUE and FALSE otherwise.
@@ -54,16 +49,12 @@ The probability that of x being less than \eqn{\theta}, where x follows a circul
 Arthur Pewsey, Markus Neuhauser, and Graeme D. Ruxton (2013).
 Circular Statistics in R.
 
-Barnett M. J. and Kingston R. L. (2024). A note on the Hendrickson-Lattman phase probability
-distribution and its equivalence to the generalized von Mises distribution.
-Journal of Applied Crystallography, 57(2).
-
 Jammalamadaka S. R. and Kozubowski T. J. (2003). A new family of circular models:
 The wrapped Laplace distributions. Advances and Applications in Statistics, 3(1): 77--103.
 
-Purkayastha S. (1991). A Rotationally Symmetric Directional Distribution: Obtained through Maximum Likelihood Characterization. The Indian Journal of Statistics, Series A, 53(1): 70-83
-
-Cabrera J. and Watson G. S. (1990). On a spherical median related distribution. Communications in Statistics-Theory and Methods, 19(6): 1973--1986.
+Barnett M. J. and Kingston R. L. (2024). A note on the Hendrickson-Lattman phase probability
+distribution and its equivalence to the generalized von Mises distribution.
+Journal of Applied Crystallography, 57(2).
 }
 
 \author{
@@ -77,15 +68,13 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 %}
 
 \seealso{
-\code{\link{group.gof}, \link{dvm}, \link{dcircexp},
-\link{purka.mle}, \link{dcircpurka}, \link{dmmvm}
+\code{\link{group.gof}, \link{circ.summary}, \link{rvonmises}
 }
 }
 
 \examples{
 pvm(1, 2, 10, rads = TRUE)
-pmmvm(1, 2, 10, 3, rads = TRUE)
+pvm(2, 2, 10, rads = TRUE)
 pcircexp(c(1, 2), 2, rads = TRUE)
-pcircpurka(2, 3, 0.3)
 }
 
