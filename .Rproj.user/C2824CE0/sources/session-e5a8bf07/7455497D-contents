@@ -1,11 +1,15 @@
 \name{Cumulative distribution function of circular distributions}
 \alias{pvm}
-\alias{pmmvm}
-\alias{pcircexp}
-\alias{pcircpurka}
 \alias{pspml}
-\alias{pcardio}
+\alias{pwrapcauchy}
+\alias{pcircpurka}
 \alias{pcircbeta}
+\alias{pcardio}
+\alias{pcircexp}
+\alias{pcipc}
+\alias{pcipc}
+\alias{pgcpc}
+\alias{pmmvm}
 \title{
 Cumulative distribution function of circular distributions
 }
@@ -16,12 +20,15 @@ Cumulative probability distribution of circular distributions.
 
 \usage{
 pvm(u, m, k, rads = FALSE)
-pmmvm(u, m, k, N, rads = FALSE)
-pcircexp(u, lambda, rads = FALSE)
-pcircpurka(u, m, a, rads = FALSE)
 pspml(u, mu, rads = FALSE)
-pcardio(u, m, rho, rads = FALSE)
+pwrapcauchy(u, m, rho, rads = FALSE)
+pcircpurka(u, m, a, rads = FALSE)
 pcircbeta(u, m, a, b, rads = FALSE)
+pcardio(u, m, rho, rads = FALSE)
+pcircexp(u, lambda, rads = FALSE)
+pcipc(u, omega, g, rads = FALSE)
+pgcpc(u, omega, g, rho, rads = FALSE)
+pmmvm(u, m, k, N, rads = FALSE)
 }
 
 \arguments{
@@ -34,6 +41,12 @@ The mean direction of the von Mises and the multi-modal von Mises distribution i
 \item{mu}{
 The mean vector, a vector with two values for the "pspml".
 }
+\item{omega}{
+The location parameter of the CIPC and GCPC distributions.
+}
+\item{g}{
+The norm of the mean vector for the CIPC and GCPC distributions.
+}
 \item{k}{
 The concentration parameter, \eqn{\kappa}.
 }
@@ -42,13 +55,13 @@ The \eqn{\lambda} parameter of the circular exponential distribution. This must 
 }
 \item{a}{
 The \eqn{\alpha} parameter of the circular Purkayastha distribution or the \eqn{\alpha} parameter of the
-circular beta distribution.
+circular Beta distribution.
 }
 \item{b}{
 The \eqn{\beta} parameter of the circular beta distribution.
 }
 \item{rho}{
-The \eqn{\rho} parameter of the Cardioid distribution
+The \eqn{\rho} parameter of the Cardioid, wrapped Cauchy and GCPC distributions.
 }
 \item{N}{
 The number of modes to consider in the multi-modal von Mises distribution.
@@ -67,8 +80,7 @@ The probability that of u being less than \eqn{\theta}, where u follows a circul
 }
 
 \references{
-Arthur Pewsey, Markus Neuhauser, and Graeme D. Ruxton (2013).
-Circular Statistics in R.
+Arthur Pewsey, Markus Neuhauser, and Graeme D. Ruxton (2013). Circular Statistics in R.
 
 Barnett M. J. and Kingston R. L. (2024). A note on the Hendrickson-Lattman phase probability
 distribution and its equivalence to the generalized von Mises distribution.

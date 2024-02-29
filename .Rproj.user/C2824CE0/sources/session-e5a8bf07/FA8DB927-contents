@@ -47,7 +47,7 @@ The mean vector, a vector with two values for the "spml".
 The location parameter of the CIPC and GCPC distributions.
 }
 \item{g}{
-The norm of the mean vector for the CIPC and GCPC.
+The norm of the mean vector for the CIPC and GCPC distributions.
 }
 \item{k}{
 The concentration parameter.
@@ -58,13 +58,13 @@ For the GCPC distribution this is the eigenvalue parameter, or covariance determ
 }
 \item{a}{
 The \eqn{\alpha} parameter of the circular Purkayastha distribution or the \eqn{\alpha} parameter of the
-circular beta distribution.
+circular Beta distribution.
 }
 \item{b}{
-The \eqn{\beta} parameter of the circular beta distribution.
+The \eqn{\beta} parameter of the circular Beta distribution.
 }
 \item{lambda}{
-The \eqn{\lambda} parameter of the circular or wrapped exponential distribution. This must be positive.
+The \eqn{\lambda} parameter of the circular (or wrapped) exponential distribution. This must be positive.
 }
 \item{param}{
 The vector of parameters of the GGVM distribution as returned by the function \code{\link{ggvm.mle}}.
