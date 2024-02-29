@@ -53,7 +53,7 @@ The norm of the mean vector for the CIPC and GCPC.
 The concentration parameter.
 }
 \item{rho}{
-For the wrapped Cauchy and Cardioid distributions, this is the \eqn{\rho} parameter.
+For the wrapped Cauchy distribution, this is the \eqn{\rho} parameter.
 For the GCPC distribution this is the eigenvalue parameter, or covariance determinant.
 }
 \item{a}{
@@ -105,12 +105,6 @@ The wrapped Laplace distributions. Advances and Applications in Statistics, 3(1)
 Barnett M. J. and Kingston R. L. (2024). A note on the Hendrickson-Lattman phase probability
 distribution and its equivalence to the generalized von Mises distribution.
 Journal of Applied Crystallography, 57(2).
-
-Paula F. V., Nascimento A. D., Amaral G. J. and Cordeiro G. M. (2021).
-Generalized Cardioid distributions for circular data analysis. Stats, 4(3): 634--649.
-
-Zheng Sun (2009). Comparing measures of fit for circular distributions. MSc Thesis, University of Victoria.
-file:///C:/Users/mtsag/Downloads/zhengsun_master_thesis.pdf
 }
 
 \author{
