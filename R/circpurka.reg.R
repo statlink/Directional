@@ -10,7 +10,7 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
     est <- x %*% be
     a <- sqrt( Rfast::rowsums(est^2) )
     est <- est / a
-    - sum( log(a) - log(1 - exp(-a * pi) )  - a * acos( z * est ) )
+    - sum( log(a) - log(1 - exp(-a * pi) ) - a * acos( z * est ) )
   }
 
   ini <- as.vector( solve( crossprod(x), crossprod(x, z) ) )
