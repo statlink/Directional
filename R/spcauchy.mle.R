@@ -31,5 +31,5 @@ spcauchy.mle <- function(x, tol = 1e-6) {
     lik2 <- mod$objective
   }
 
-  list(mu = mu, rho = rho, loglik = lik2 + n * lgamma( 0.5 * (d + 1) ) - 0.5 * n * (d + 1) * log(pi) - 0.5 * n * log(2) )
+  list(mu = mu, rho = rho, loglik = lik2 + n * lgamma( 0.5 * (d + 1) ) - 0.5 * n * (d + 1) * log(pi) - n * log(2) )
 }
