@@ -6,7 +6,7 @@ cipc.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6) {
   }
 
   x <- model.matrix(y~., as.data.frame(x) )
-  n <- dim(y)[1]  ;  p <- dim(x)[2]
+  p <- dim(x)[2]
   H <- matrix(0, 2 * p, 2 * p)
 
   tic <- proc.time()
