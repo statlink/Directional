@@ -1,18 +1,17 @@
-\name{MLE of (hyper-)spherical rotationally symmetric distributions}
+\name{MLE of (hyper-)spherical rotational symmetric distributions}
 \alias{vmf.mle}
 \alias{multivmf.mle}
 \alias{iag.mle}
 \alias{spcauchy.mle}
-\alias{spcauchy.mle2}
 \alias{sipc.mle}
 \alias{pkbd.mle}
 \alias{acg.mle}
 \title{
-MLE of (hyper-)spherical rotationally symmetric distributions
+MLE of (hyper-)spherical rotational symmetric distributions
 }
 
 \description{
-MLE of (hyper-)spherical rotationally symmetric distributions.
+MLE of (hyper-)spherical rotational symmetric distributions.
 }
 
 \usage{
