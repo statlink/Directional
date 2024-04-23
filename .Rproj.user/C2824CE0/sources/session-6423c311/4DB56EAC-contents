@@ -11,7 +11,7 @@ cipc.mle <- function(x, rads = FALSE, tol = 1e-6) {
   com2 <- 1 / (com - a)
   lik <- -sum( log( sqrt(g2 + 1) - a ) )
   up <- Rfast::eachrow(x, mu / com, oper = "-" )
-  der <- Rfast::eachcol.apply(up, com2)
+  der <-  Rfast::colsums(up * com2 )
   #up1 <- Rfast::Outer( as.vector( ( diag(com, 2) - tcrossprod(mu) / com ) / com^2 ), com2, oper = "/" )
   #up1 <- matrix( Rfast::colsums(up1), ncol = 2)
   up1 <- ( diag(com, 2) - tcrossprod(mu) / com ) / com^2 * sum(com2)
@@ -29,7 +29,7 @@ cipc.mle <- function(x, rads = FALSE, tol = 1e-6) {
   while ( lik[i] - lik[i - 1] > tol ) {
     i <- i + 1
     up <- Rfast::eachrow(x, mu / com, oper = "-" )
-    der <- Rfast::eachcol.apply(up, com2)
+    der <-  Rfast::colsums(up * com2 )
     #up1 <- Rfast::Outer( as.vector( ( diag(com, 2) - tcrossprod(mu) / com ) / com^2 ), com2, oper = "/" )
     #up1 <- matrix( Rfast::colsums(up1), ncol = 2)
     up1 <- ( diag(com, 2) - tcrossprod(mu) / com ) / com^2 * sum(com2)
