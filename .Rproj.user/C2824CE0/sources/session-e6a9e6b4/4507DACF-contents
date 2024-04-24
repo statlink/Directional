@@ -33,7 +33,7 @@ cipc.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6) {
   up2 <- crossprod(x * muc_y[, 2]/com2)
   H[(p + 1):(2*p), (p + 1):(2*p)] <- up2 - up1
   ### Jacobian of b12
-  a1 <- mu[, 1] * mu[, 2] / ( com * com^2 * com2)
+  a1 <- mu[, 1] * mu[, 2] / ( com^3 * com2)
   up1 <- crossprod(x, x * a1)
   up2 <- crossprod(x * muc_y[, 1]/com2, x * muc_y[, 2]/com2)
   H[1:p, (p + 1):(2*p)] <- H[(p + 1):(2*p), 1:p] <- up2 + up1
@@ -64,7 +64,7 @@ cipc.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6) {
     up2 <- crossprod(x * muc_y[, 2]/com2)
     H[(p + 1):(2*p), (p + 1):(2*p)] <- up2 - up1
     ### Jacobian of b12
-    a1 <- mu[, 1] * mu[, 2] / ( com * com^2 * com2)
+    a1 <- mu[, 1] * mu[, 2] / ( com^3 * com2)
     up1 <- crossprod(x, x * a1)
     up2 <- crossprod(x * muc_y[, 1]/com2, x * muc_y[, 2]/com2)
     H[1:p, (p + 1):(2*p)] <- H[(p + 1):(2*p), 1:p] <- up2 + up1
@@ -95,7 +95,6 @@ cipc.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6) {
   list( runtime = runtime, iters = i, beta = be, seb = seb,
         loglik = lik[i] - n * log(2 * pi), est = est )
 }
-
 
 
 

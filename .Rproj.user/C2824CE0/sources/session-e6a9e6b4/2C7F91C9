@@ -1,26 +1,26 @@
 {
-    "id": "4507DACF",
-    "path": "~/GitHub/Directional/R/cipc.reg.R",
-    "project_path": "R/cipc.reg.R",
-    "type": "r_source",
+    "id": "2C7F91C9",
+    "path": "~/GitHub/Directional/man/vmf.mle.Rd",
+    "project_path": "man/vmf.mle.Rd",
+    "type": "r_doc",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1713900566686.0,
+    "created": 1713958159454.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "8,21",
-        "scrollLine": "0"
+        "cursorPosition": "56,101",
+        "scrollLine": "52"
     },
     "folds": "",
-    "lastKnownWriteTime": 1713900581,
+    "lastKnownWriteTime": 1713958177,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1713900581868,
+    "last_content_update": 1713958178000,
     "read_only": false,
     "read_only_alternatives": []
 }
