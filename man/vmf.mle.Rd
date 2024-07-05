@@ -179,7 +179,7 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 %}
 
 \seealso{
-\code{ \link{racg}, \link{vm.mle}, \link{rvmf}
+\code{ \link{racg}, \link{rvmf}
 }
 }
 
