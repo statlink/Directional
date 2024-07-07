@@ -31,5 +31,5 @@ pkbd.mle <- function(x, tol = 1e-6) {
     lik2 <- mod$objective
   }
 
-  list(mu = mu, rho = rho, loglik = lik2 + n * lgamma(0.5 * d) - n * 0.5 * d * log(2 * pi) )
+  list(mu = mu, rho = rho, loglik = lik2 + n * lgamma(0.5 * d) - n * 0.5 * d * log(pi) - n * log(2) )
 }
