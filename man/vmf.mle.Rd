@@ -54,9 +54,8 @@ The acg.mle() fits the angular central Gaussian distribution. There is a constra
 
 The iag.mle() implements MLE of the spherical projected normal distribution, for spherical data only.
 
-The spcauchy.mle() is faster than the spcacuhy.mle() because it employs the Newton-Raphson algortihm.
-
-The spcauchy.mle2() estimates the parameters of the spherical Cauchy distribution, for any dimension.
+The spcauchy.mle() is faster than the spcacuhy.mle2() because it employs the Newton-Raphson algortihm. 
+Both functions estimate the parameters of the spherical Cauchy distribution, for any dimension.
 Despite the name sounds confusing, it is implemented for arbitrary dimensions, not only the sphere.
 The function employs a combination of the fixed points iteration algorithm and the Brent algorithm.
 
