@@ -65,7 +65,11 @@ The value of the maximised log-likelihood.
 }
 \item{param}{
 A vector consisting of the estimates of the two parameters, the mean direction for both distributions
-and the concentration parameter \eqn{kappa} and the \eqn{rho} for the von Mises (and the multi-modal von Mises) and wrapped Cauchy respectively. For the circular beta this contains the mean angle and the \eqn{\alpha} and \eqn{\beta} parameters. For the cardioid distribution this contains the \eqn{\mu} and \eqn{rho} parameters. For the generalised von Mises this is a vector consisting of the \eqn{\zeta}, \eqn{\kappa}, \eqn{\mu} and \eqn{\alpha} parameters of the generalised von Mises distribution as described in Equation (2.7) of Dietrich and Richter (2017).
+and the concentration parameter \eqn{\kappa} and the \eqn{\rho} for the von Mises (and the multi-modal von Mises) 
+and wrapped Cauchy respectively. For the circular beta this contains the mean angle and the \eqn{\alpha} and \eqn{\beta} parameters. 
+For the cardioid distribution this contains the \eqn{\mu} and \eqn{\rho} parameters. For the generalised von Mises this is a 
+vector consisting of the \eqn{\zeta}, \eqn{\kappa}, \eqn{\mu} and \eqn{\alpha} parameters of the generalised von Mises 
+distribution as described in Equation (2.7) of Dietrich and Richter (2017).
 }
 \item{gamma}{
 The norm of the mean vector of the angular Gaussian, the CIPC and the GCPC distributions.
