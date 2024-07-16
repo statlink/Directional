@@ -106,7 +106,7 @@ https://en.wikipedia.org/wiki/Wrapped_exponential_distribution
 
 Jammalamadaka S. R. and Kozubowski T. J. (2003). A new family of circular models:
 The wrapped Laplace distributions.
-Advances and Applications in Statistics, 3(1), 77-103.
+Advances and Applications in Statistics, 3(1), 77--103.
 
 Tsagris M. and Alzeley O. (2023). Circular and spherical projected Cauchy distributions:
 A Novel Framework for Circular and Directional Data Modeling.
