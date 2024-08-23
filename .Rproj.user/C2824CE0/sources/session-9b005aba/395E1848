@@ -3,7 +3,7 @@
     "path": "~/GitHub/Directional/man/dirda.cv.Rd",
     "project_path": "man/dirda.cv.Rd",
     "type": "r_doc",
-    "hash": "0",
+    "hash": "4192805486",
     "contents": "",
     "dirty": false,
     "created": 1724412149793.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "42,51",
-        "scrollLine": "35"
+        "cursorPosition": "115,19",
+        "scrollLine": "98"
     },
     "folds": "",
-    "lastKnownWriteTime": 1724412223,
+    "lastKnownWriteTime": 1724413816,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1724412223418,
+    "last_content_update": 1724413816360,
     "read_only": false,
     "read_only_alternatives": []
 }

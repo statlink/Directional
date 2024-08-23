@@ -131,12 +131,8 @@ dirda.cv <- function(x, ina, folds = NULL, nfolds = 10, k = 2:10, stratified = F
         mod <- Directional::spcauchy.mle( xtrain[id == j, ])
         mat[, j] <- Directional::dspcauchy(xtest, mod$mu, mod$rho, logden = TRUE)
       }
-        est5[[ i ]] <- Rfast::rowMaxs(mat)
-        per5[i] <- mean(est5[[ i ]] == ina[nu])
-      }
-    for (i in 1:nfolds) {
-      est5[[ i ]] <- rep(NA, length(folds[[ i ]]) )
-      per5[i] <- NA
+      est5[[ i ]] <- Rfast::rowMaxs(mat)
+      per5[i] <- mean(est5[[ i ]] == ina[nu])
     }
   }
 
@@ -155,12 +151,8 @@ dirda.cv <- function(x, ina, folds = NULL, nfolds = 10, k = 2:10, stratified = F
         mod <- Directional::pkbd.mle( xtrain[id == j, ])
         mat[, j] <- Directional::dpkbd(xtest, mod$mu, mod$rho, logden = TRUE)
       }
-        est6[[ i ]] <- Rfast::rowMaxs(mat)
-        per6[i] <- mean(est6[[ i ]] == ina[nu])
-      }
-    for (i in 1:nfolds) {
-      est6[[ i ]] <- rep(NA, length(folds[[ i ]]) )
-      per6[i] <- NA
+      est6[[ i ]] <- Rfast::rowMaxs(mat)
+      per6[i] <- mean(est6[[ i ]] == ina[nu])
     }
   }
 
@@ -171,7 +163,7 @@ dirda.cv <- function(x, ina, folds = NULL, nfolds = 10, k = 2:10, stratified = F
     for (i in 1:nfolds) {
       nu <- folds[[ i ]]
       est7[[ i ]] <- Rfast::dirknn(x[nu, , drop = FALSE], x[-nu, ], ina[-nu], k = k, type = "C", parallel = parallel)
-      per7[i, ] <- Rfast::colmeans(est5[[ i ]] == ina[nu])
+      per7[i, ] <- Rfast::colmeans(est7[[ i ]] == ina[nu])
     }
   }
 

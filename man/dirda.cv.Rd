@@ -113,7 +113,7 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 
 \examples{
 x <- rvmf(300, rnorm(3), 10)
-ina <- sample.int(4, 300, replace = TRUE)
+ina <- sample.int(2, 300, replace = TRUE)
 dirda.cv(x, ina, B = 1000)
 }
 
