@@ -23,9 +23,11 @@ rpkbd <- function(n, mu, rho) {
                                 log(2 / (1 + sqrt(1 - lam^2/bstar) ) ) )
   wa <- which(wa)
   n1 <- length(wa)
-  mu <- matrix( rep(mu, each = n1), ncol = d)
-  x <- (z[wa, ] + b2 * mz[wa] * mu) / com[wa]
-
+  if ( n1 > 0 ) {  
+    mu <- matrix( rep(mu, each = n1), ncol = d)
+    x <- (z[wa, ] + b2 * mz[wa] * mu) / com[wa]
+  } else x <- NULL
+  
   while (n1 < n) {
     u <- Rfast2::Runif(2 *(n - n1) )
     z <- Rfast::matrnorm(2 * (n - n1 ), d)
