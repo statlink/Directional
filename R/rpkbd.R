@@ -4,7 +4,7 @@ rpkbd <- function(n, mu, rho) {
   d <- length(mu)
 
   cdlb <- function(be, lam, d) {
-    0.5 * d * log( ( 1 + sqrt(1 - lam^2) ) / 1 + sqrt(1 - lam^2 / be) ) -
+    0.5 * d * log( ( 1 + sqrt(1 - lam^2) ) / (1 + sqrt(1 - lam^2 / be) ) ) -
     0.5 * log( 1- be)
   }
   bstar <- optimize(cdlb, c(lam * (2 - lam), 1), lam = lam, d = d)$minimum
