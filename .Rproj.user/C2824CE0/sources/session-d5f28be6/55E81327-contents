@@ -2,7 +2,7 @@ iagd <- function(y, mu, logden = FALSE) {
   y <- as.matrix(y)
   d <- dim(y)[2]
   if ( d == 1 )   y <- t(y)
-  n <- dim(y)[1]  ;  d <- dim(y)[2]
+  n <- dim(y)[1] ;  d <- dim(y)[2]
 
   if ( d == 3 ) {
     a <- tcrossprod(mu, y)
@@ -32,7 +32,7 @@ iagd <- function(y, mu, logden = FALSE) {
 .IAGd <- function(y, mu, logden = FALSE) {
   y <- as.matrix(y)
   if  ( dim(y)[2] == 1 )   y <- t(y)
-  n <- dim(y)[1]  ;  d <- dim(y)[2]
+  d <- dim(y)[2]
   p <- d - 1
   Cd <- (2 * pi)^(-0.5 * p)
   a <- as.vector( y %*% mu )

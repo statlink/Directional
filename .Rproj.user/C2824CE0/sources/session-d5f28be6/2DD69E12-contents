@@ -31,19 +31,19 @@ dESAGd <- function(y, mu, gam, logden = FALSE) {
 
 
 
-# dESAG_old <- function(y, mu, gamma) {
-#   d <- length(y)
-#   R <- .rotation(gamma)
-#   lambda <- .parameter(gamma)[[ 1 ]]
-#   V_inv <- .covariance_inv_matrix(mu, lambda, R)
-#   p <- d - 1
-#   yVy <- t(y) %*% V_inv %*% y
-#   Cd <- (2 * pi)^(-0.5 * p)
-#   a <- as.vector( t(y) %*% mu / sqrt(yVy) )
-#   Mp <- numeric(p)
-#   Mp[1] <- a * pnorm(a) + dnorm(a)
-#   Mp[2] <- (1 + a^2) * pnorm(a) + a * dnorm(a)
-#   if ( p >= 3 )   for ( i in 3:p )  Mp[i] <- a * Mp[i - 1] + (i - 1) * Mp[i - 2]
-#   M_p <- Mp[p]
-#   Cd/( yVy^(d/2) ) * exp(0.5*( ( t(y) %*% mu)^2 / yVy - t(mu) %*% mu )) * M_p
-# }
+dESAG_old <- function(y, mu, gamma) {
+  d <- length(y)
+  R <- .rotation(gamma)
+  lambda <- .parameter(gamma)[[ 1 ]]
+  V_inv <- .covariance_inv_matrix(mu, lambda, R)
+  p <- d - 1
+  yVy <- t(y) %*% V_inv %*% y
+  Cd <- (2 * pi)^(-0.5 * p)
+  a <- as.vector( t(y) %*% mu / sqrt(yVy) )
+  Mp <- numeric(p)
+  Mp[1] <- a * pnorm(a) + dnorm(a)
+  Mp[2] <- (1 + a^2) * pnorm(a) + a * dnorm(a)
+  if ( p >= 3 )   for ( i in 3:p )  Mp[i] <- a * Mp[i - 1] + (i - 1) * Mp[i - 2]
+  M_p <- Mp[p]
+  Cd/( yVy^(d/2) ) * exp(0.5*( ( t(y) %*% mu)^2 / yVy - t(mu) %*% mu )) * M_p
+}
