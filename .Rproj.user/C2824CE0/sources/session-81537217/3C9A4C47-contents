@@ -1,0 +1,35 @@
+# Function to find MLEs
+# @param Y, dataset with n observations, n*d matrix
+# @return list that contains a vector of MLEs, maxmimal log-likelihood value, etc from function optim() with 'BFGS'. It outputs Hessian matrix as well
+IAG.mle <- function(y) {
+  
+  d <- dim(y)[2]
+  p <- d - 1
+  n <- dim(y)[1]
+  B <- rep(1, d)
+  
+  logCd <- log( (2 * pi)^(-0.5 * p) )
+  zero <- numeric(d)
+  Mp <- matrix(1, n, p)
+  
+  joint_log_lik <- function(mu, y, d, p, zero, Mp) {
+    Mp <- matrix(1, n, p)
+    a <- as.vector( y %*% mu ) 
+    g2 <- sum(mu^2)
+    Mp[, 1] <- a * pnorm(a) + dnorm(a)
+    Mp[, 2] <- (1 + a^2) * pnorm(a) + a * dnorm(a)
+    if ( p >= 3 )  for ( j in 3:p )  Mp[, j] <- a * Mp[, j - 1] + (j - 1) * Mp[, j - 2]
+    f <- 0.5 * ( a^2 - g2) + log(Mp[, p]) 
+    - sum(f) 
+  }
+  
+  mod <- optim( par = B, joint_log_lik, y = y, d = d, p = p, zero = zero, Mp = Mp, method = "BFGS", 
+                control = list(maxit = 10000) )
+  
+  list( mu = mod$par, loglik = - mod$value + n * logCd )
+}
+
+
+
+
+
