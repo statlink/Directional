@@ -1,15 +1,15 @@
-\name{Density of the ESAG distribution in arbitrary dimensions}
+\name{Density of the IAG distribution in arbitrary dimensions}
 \alias{dESAG}
 \title{
-Density of the ESAG distribution in arbitrary dimensions
+Density of the IAG distribution in arbitrary dimensions
 }
 
 \description{
-Density of the ESAG distribution in arbitrary dimensions.
+Density of the IAG distribution in arbitrary dimensions.
 }
 
 \usage{
-dESAG(y, mu, gam, logden = FALSE)
+IAGd(y, mu, logden = FALSE)
 }
 
 \arguments{
@@ -17,10 +17,7 @@ dESAG(y, mu, gam, logden = FALSE)
 A matrix or a vector with the data expressed in Euclidean coordinates, i.e. unit vectors.
 }
 \item{mu}{
-The mean vector the ESAG distribution, a vector in \eqn{R^3}.
-}
-\item{gam}{
-The \eqn{\gamma} parameters of the ESAG distribution.
+The mean vector the IAG distribution, a vector in \eqn{R^d}.
 }
 \item{logden}{
 If you the logarithm of the density values set this to TRUE.
@@ -28,7 +25,7 @@ If you the logarithm of the density values set this to TRUE.
 }
 
 \details{
-The density of the ESAG distribution in arbitrary dimensions is computed.
+The density of the IAG distribution in arbitrary dimensions is computed.
 }
 
 \value{
@@ -43,21 +40,21 @@ Electronic Journal of Statististics, 18(1): 301--334.
 \author{
 Zehao Yu.
 
-R implementation and documentation: Zehao Yu \email{Zzehaoy@email.sc.edu}.
+R implementation and documentation: Zehao Yu \email{zehaoy@email.sc.edu}.
 }
 %\note{
 %%  ~~further notes~~
 %}
 
 \seealso{
-\code{\link{ESAG.mle}, \link{dESAG}, \link{rIAG}
+\code{\link{rIAG}, \link{IAG.mle}, \link{ESAG.mle}
 }
 }
 
 \examples{
 m <- colMeans( as.matrix( iris[,1:3] ) )
-y <- rkent(1000, k = 10, m = m, b = 4)
-mod <- kent.mle(y)
-dkent( y, G = mod$G, param = mod$param )
+mu <- m / sqrt( rowsums(m^2) )
+y <- rIAG(1000, mu)
+a <- IAGd(y, mu)
 }
 
