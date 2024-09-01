@@ -44,7 +44,7 @@ ESAGd.mle <- function(y, full = FALSE) {
     eigenvector <- eigenvector_hat[, -d] %*% R
     P <- cbind(eigenvector, eigenvector_hat[, d] )
     V <- P %*% ( t(P) * c(lambda, 1) )
-    res <- list( mu = mod$par[1:d], gam = mod$par[-(1:d)], loglik = - mod$value + n * logCd, vinv = V )
+    res <- list( mu = mod$par[1:d], gam = mod$par[-(1:d)], loglik = - mod$value + n * logCd, vinv = solve(V), lambda = lambda )
   }
   res
 }
