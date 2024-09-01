@@ -52,7 +52,7 @@ esag.mle <- function(y, full = FALSE, tol = 1e-06) {
     vinv <- I3 + gam1 * ( T1 - T2 ) + gam2 * ( T12 + t(T12) ) + heta * ( T1 + T2 )
     rho <- heta + 1 - 0.5 * sqrt( (2 * heta + 2 )^ 2 - 4 )
     psi <- 0.5 * acos( 2 * gam1 / (1/rho - rho ) )
-    res <- res <- list( mu = da$par[1:3], gam = c(gam1, gam2), loglik = lik2 - n * log(2 * pi),
+    res <- list( mu = da$par[1:3], gam = c(gam1, gam2), loglik = lik2 - n * log(2 * pi),
                         vinv = vinv, rho = rho, psi = psi, iag.loglik = mod$param[2])
   } else  res <- list( mu = da$par[1:3], gam = da$par[4:5], loglik = lik2 - n * log(2 * pi),
                        iag.loglik = mod$param[2])

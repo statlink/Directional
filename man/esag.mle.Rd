@@ -54,6 +54,10 @@ The \eqn{rho} parameter (smallest eigenvalue of the covariance matrix). It is re
 \item{psi}{
 The angle of rotation \eqn{\psi} set this equal to TRUE. It is returned if the argument "full" is TRUE in esag.mle().
 }
+\item{lambda}{
+The \eqn{d-1} eigenvalues of the covariance matrix of the ESAG distribution in arbitrary dimensions. 
+This is returned if "full" is set to TRUE in the ESAGd.mle().
+}
 \item{iag.loglik}{
 The log-likelihood value of the isotropic angular Gaussian distribution in the esag.mle(). That is, the projected
 normal distribution which is rotationally symmetric.
