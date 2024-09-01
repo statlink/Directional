@@ -38,6 +38,9 @@ The log-likelihood value.
 \references{
 Zehao Yu and Xianzheng Huang (2024). A new parameterization for elliptically symmetric angular Gaussian distributions of arbitrary dimension.
 Electronic Journal of Statististics, 18(1): 301--334.
+
+Paine P.J., Preston S.P., Tsagris M. and Wood A.T.A. (2018). An Elliptically Symmetric
+Angular Gaussian Distribution. Statistics and Computing, 28: 689--697.
 }
 
 \author{

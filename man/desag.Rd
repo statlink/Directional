@@ -1,7 +1,7 @@
 \name{Density of the spherical ESAG and Kent distributions and of the ESAG distribution in arbitrary dimensions}
 \alias{desag}
 \alias{dkent}
-\alias{dESAG}
+\alias{dESAGd}
 \title{
 Density of the spherical ESAG and Kent distributions
 }
@@ -13,12 +13,12 @@ Density of the spherical ESAG and Kent distributions.
 \usage{
 desag(y, mu, gam, logden = FALSE)
 dkent(y, G, param, logden = FALSE)
-dESAG(y, mu, gam, logden = FALSE)
+dESAGd(y, mu, gam, logden = FALSE)
 }
 
 \arguments{
 \item{y}{
-A matrix or a vector with the data expressed in Euclidean coordinates, i.e. unit vectors. For the dESAG it can have any dimension.
+A matrix or a vector with the data expressed in Euclidean coordinates, i.e. unit vectors. For the dESAGd it can have any dimension.
 }
 \item{mu}{
 The mean vector the ESAG distribution.

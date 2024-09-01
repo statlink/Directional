@@ -1,6 +1,6 @@
 \name{Simulation of random values from the ESAG distribution}
 \alias{resag}
-\alias{rESAG}
+\alias{rESAGd}
 \title{
 Simulation of random values from the ESAG distribution
 }
@@ -11,6 +11,7 @@ Simulation of random values from the ESAG distribution.
 
 \usage{
 resag(n, mu, gam)
+rESAGd(n, mu, gam)
 }
 
 \arguments{
@@ -21,13 +22,14 @@ A number; how many vectors you want to generate.
 The mean vector the ESAG distribution.
 }
 \item{gam}{
-The \eqn{\gamma} parameters of the ESAG distribution.
+The \eqn{\gamma} parameters of the ESAG distribution. For the rESAGd this may be NULL in case you want to simulate from the IAG in arbitrady dimensions. 
 }
 }
 
 \details{
-A random sample from the ESAG distribution is generated. In case the \eqn{\gamma_s} are zero, the sample is drawn
-from the Independent Angular Gaussian (or projected normal).
+A random sample from the ESAG distribution is generated. In case the \eqn{\gamma_s} are zero (or null for the rESAGd), the sample is drawn
+from the Independent Angular Gaussian (or projected normal). The resag() is designed for the sphere, whereas the rESAGd is designed for the sphere 
+and hyper-sphere.
 }
 
 \value{

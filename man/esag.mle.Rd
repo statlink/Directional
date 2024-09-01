@@ -10,7 +10,7 @@ MLE of the ESAG distribution.
 
 \usage{
 esag.mle(y, full = FALSE, tol = 1e-06)
-ESAG.mle(y, full = FALSE)
+ESAGd.mle(y, full = FALSE)
 }
 
 \arguments{

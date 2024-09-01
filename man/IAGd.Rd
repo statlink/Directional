@@ -1,5 +1,5 @@
 \name{Density of the IAG distribution in arbitrary dimensions}
-\alias{dESAG}
+\alias{iagd}
 \title{
 Density of the IAG distribution in arbitrary dimensions
 }
@@ -9,7 +9,7 @@ Density of the IAG distribution in arbitrary dimensions.
 }
 
 \usage{
-IAGd(y, mu, logden = FALSE)
+iagd(y, mu, logden = FALSE)
 }
 
 \arguments{

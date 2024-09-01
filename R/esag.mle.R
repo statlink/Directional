@@ -1,132 +1,60 @@
-# Function to find MLEs
-# @param Y, dataset with n observations, n*d matrix
-# @return list that contains a vector of MLEs, maxmimal log-likelihood value, etc from function optim() with 'BFGS'. It outputs Hessian matrix as well
-ESAG.mle <- function(y){
-
-  d <- dim(y)[2]
-  start_dim <- 0.5 * (d^2 + d - 2) 
-  B <- rep(0, start_dim)
-  B[1:d] <- 1
-  logCd <- log( (2 * pi)^(-0.5 * p) )
-  p <- d - 1
+### MLE of the ESAG
+esag.mle <- function(y, full = FALSE, tol = 1e-06) {
+  ## y is the spherical data, a matrix with unit vectors
   n <- dim(y)[1]
-  zero <- numeric(d)
-  Mp <- matrix(1, n, p)
+  I3 <- diag(3)
+  z <- t(y)
+  nc <- n/2
 
-  joint_log_lik <- function(B, y, d, p, zero, Mp) {
-    mu <- B[1:d]
-    gamma <- B[-(1:d)]
-    R <- .rotation(gamma)
-    lambda <- .parameter(gamma)[[ 1 ]]
-    eigenvector_hat <- .ONB(mu)
-    eigenvector <- eigenvector_hat[, -d] %*% R
-    P <- cbind(eigenvector, eigenvector_hat[, d] )
-    V <- P %*% ( t(P) * c(lambda, 1) )
-    yVy <- Rfast::mahala(y, zero, V)
-    a <- as.vector( y %*% mu ) / sqrt(yVy) 
-    Mp[, 1] <- a * pnorm(a) + dnorm(a)
-    Mp[, 2] <- (1 + a^2) * pnorm(a) + a * dnorm(a)
-    if ( p >= 3 )  for ( j in 3:p )  Mp[, j] <- a * Mp[, j - 1] + (j - 1) * Mp[, j - 2]
-    g2 <- sum(mu^2)
-    f <-  - 0.5 * d * log(yVy) + 0.5 * ( a^2 - g2) + log(Mp[, p]) 
-    - sum(f) 
+   mag <- function(param, z, nc, I3) {
+     m <- param[1:3]
+     gam1 <- param[4]
+     gam2 <- param[5]
+     heta <- sqrt(gam1^2 + gam2^2 + 1) - 1
+     m0 <- sqrt( m[2]^2 + m[3]^2 )
+     rl <- sum(m^2)
+     x1b <- c( -m0^2, m[1] * m[2], m[1] * m[3] ) / m0 / sqrt(rl)
+     x2b <- c( 0, -m[3], m[2] )/m0
+     T1 <- tcrossprod( x1b )
+     T2 <- tcrossprod( x2b )
+     T12 <- tcrossprod( x1b, x2b )
+     vinv <- I3 + gam1 * ( T1 - T2 ) + gam2 * ( T12 + t(T12) ) + heta * ( T1 + T2 )
+     g2 <- colSums( m * z )
+     g1 <- colSums( z * crossprod(vinv, z) )
+     a <- g2 / sqrt(g1)
+     a2 <- a^2
+     M2 <- ( 1 + a2 ) * pnorm(a) + a * dnorm(a)
+     - 0.5 * sum(a2) + nc * rl + 1.5 * sum( log(g1) ) - sum( log(M2) )
+   }
+
+  suppressWarnings({
+  mod <- Rfast::iag.mle(y)
+  da <- nlm(mag, c(mod$mesi[1, ], rnorm(2) ), z = z, nc = nc, I3 = I3, iterlim = 5000)
+  lik1 <-  -da$minimum
+  da <- optim(da$estimate, mag, z = z, nc = nc, I3 = I3, control = list(maxit = 10000) )
+  lik2 <-  -da$value
+  while ( lik2 - lik1 > tol) {
+    lik1 <- lik2
+    da <- optim(da$par, mag, z = z, nc = nc, I3 = I3, control = list(maxit = 10000) )
+    lik2 <-  -da$value
   }
-
-  mod <- optim( par = B, joint_log_lik, y = y, d = d, p = p, zero = zero, Mp = Mp, 
-                method = "BFGS", control = list(maxit = 10000) )
-  list( mu = mod$par[1:d], gam = mod$par[-(1:d)], loglik = - mod$value + n * logCd )
+  })
+  if ( full ) {
+    mu <- da$par[1:3]
+    gam1 <- da$par[4]  ;    gam2 <- da$par[5]
+    heta <- sqrt(gam1^2 + gam2^2 + 1) - 1
+    m0 <- sqrt( mu[2]^2 + mu[3]^2 )
+    rl <- sum(mu^2)
+    x1b <- c( -m0^2, mu[1] * mu[2], mu[1] * mu[3] ) / m0 / sqrt(rl)
+    x2b <- c( 0, -mu[3], mu[2] )/m0
+    T1 <- tcrossprod( x1b )   ;     T2 <- tcrossprod( x2b )
+    T12 <- tcrossprod( x1b, x2b )
+    vinv <- I3 + gam1 * ( T1 - T2 ) + gam2 * ( T12 + t(T12) ) + heta * ( T1 + T2 )
+    rho <- heta + 1 - 0.5 * sqrt( (2 * heta + 2 )^ 2 - 4 )
+    psi <- 0.5 * acos( 2 * gam1 / (1/rho - rho ) )
+    res <- res <- list( mu = da$par[1:3], gam = c(gam1, gam2), loglik = lik2 - n * log(2 * pi),
+                        vinv = vinv, rho = rho, psi = psi, iag.loglik = mod$param[2])
+  } else  res <- list( mu = da$par[1:3], gam = da$par[4:5], loglik = lik2 - n * log(2 * pi),
+                       iag.loglik = mod$param[2])
+  res
 }
-
-
-
-# Function to find MLEs
-# @param Y, dataset with n observations, n*d matrix
-# @return list that contains a vector of MLEs, maxmimal log-likelihood value, etc from function optim() with 'BFGS'. It outputs Hessian matrix as well
-ESAG.mle <- function(y){
-
-  start_dim <- ((ncol(y)^2+ncol(y)-2)/2)
-  start <- rep(0,start_dim)
-  start[1:ncol(y)] <- 1
-
-  joint_log_likelihood <- function(B, y = y) {
-    n <- nrow(y)
-    f <- rep(0, n)
-    for (i in 1:n) {
-      f[i] <- .log_likelihood(Bx_i = B, y_i = y[i, ])
-    }
-    sum(f)
-  }
-
-  mod <- optim( par = start, joint_log_likelihood, y= y, method = "BFGS", hessian = TRUE,
-         control = list(fnscale = -1, maxit = 10000) )
-}
-
-
-
-# log likelihood function
-# @param Bx_i, vector with length (d+2)(d-1)/2
-# @param y_i, vector with length d
-# @return log-likelihood, numeric
-.log_likelihood <- function(Bx_i, y_i) {  
-  d <- length(y_i)
-  mu <- Bx_i[1:d]
-  gamma <- Bx_i[-(1:d)]
-  R <- .rotation(gamma)
-  lambda <- .parameter(gamma)[[ 1 ]]
-  V_inv <- .covariance_inv_matrix(mu, lambda, R)
-  p <- d-1
-  yVy <- t(y_i) %*% V_inv %*% y_i
-  Cd <- (2 * pi)^(-0.5 * p)
-  a <- as.vector( t(y_i) %*% mu / sqrt(yVy) )
-  Mp <- numeric(p)
-  Mp[1] <- a * pnorm(a) + dnorm(a)
-  Mp[2] <- (1 + a^2) * pnorm(a) + a * dnorm(a)
-  if ( p >= 3 )   for ( j in 3:p )  Mp[j] <- a * Mp[j - 1] + (j - 1) * Mp[j - 2]
-  M_p <- Mp[p]
-  log(Cd) - 0.5 * d * log(yVy) + 0.5 * ( ( t(y_i) %*% mu)^2 / yVy - t(mu) %*% mu ) + log(M_p) 
-}
-
-
-# Function to create inverse of Variance-Covariance Matrix, V^-1, in ESAG(mu,V)
-# @param mu, mean direction, non-zero vector with length d
-# @param lambda, eigenvalues of V, vector of positive lambdas with length d-1, generated from function parameter(gamma)
-# @param R, Rotation mapping, (d-1)*(d-1) matrix generated from function rotation(gamma)
-# @return d by d matrix
-.covariance_inv_matrix <- function(mu, lambda, R) {
-  d <- length(mu)
-  eigenvector_hat <- .ONB(mu)
-  eigenvector <- eigenvector_hat[, -d] %*% R
-  P <- cbind(eigenvector, eigenvector_hat[, d] )
-  P %*% diag( c(1/lambda, 1) ) %*% t(P)
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
