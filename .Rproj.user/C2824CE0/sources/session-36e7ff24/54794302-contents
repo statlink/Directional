@@ -9,7 +9,7 @@ Cross validation for estimating the classification rate.
 }
 
 \usage{
-dirda.cv(x, ina, folds = NULL, nfolds = 10, stratified = FALSE,
+dirda.cv(x, ina, folds = NULL, nfolds = 10, k = 2:10, stratified = FALSE,
          type = c("vmf", "iag", "esag", "kent", "sc", "pkbd"),
          seed = NULL, B = 1000)
 }
