@@ -5,7 +5,7 @@ esag.mle2 <- function(y, full = FALSE, tol = 1e-06) {
   I3 <- diag(3)
   z <- t(y)
   nc <- n/2
-
+  
   mag <- function(param, z, nc, I3) {
     m <- param[1:3]
     gam1 <- param[4]
@@ -26,7 +26,7 @@ esag.mle2 <- function(y, full = FALSE, tol = 1e-06) {
     M2 <- ( 1 + a2 ) * pnorm(a) + a * dnorm(a)
     - 0.5 * sum(a2) + nc * rl + 1.5 * sum( log(g1) ) - sum( log(M2) )
   }
-
+  
   suppressWarnings({
     mod <- Rfast::iag.mle(y)
     da <- nlm(mag, c(mod$mesi[1, ], rnorm(2) ), z = z, nc = nc, I3 = I3, iterlim = 5000)
