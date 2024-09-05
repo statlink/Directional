@@ -10,7 +10,7 @@ Cross validation for estimating the classification rate.
 
 \usage{
 dirda.cv(x, ina, folds = NULL, nfolds = 10, stratified = FALSE,
-         type = c("vmf", "iag", "esag", "kent", "sc", "pkbd", "purka"),
+         type = c("vmf", "iag", "esag", "kent", "sc", "pkbd"),
          seed = NULL, B = 1000)
 }
 
@@ -36,7 +36,7 @@ If seed is TRUE, the results will always be the same.
 }
 \item{type}{
 The type of classifier to use. The avaliable options are "vmf" (von Mises-Fisher distribution),
-"iag" (IAG distribution), "esag" (ESAG distribution), "kent" (Kent distribution), "sc" and "sc2" (spherical Cauchy distribution), "pkbd" and "pkbd2" (Poisson kernel based distribution), and "purka" (Purkayastha distribution). The difference between "sc" and "sc2" and between "pkbd" and "pkbd2" is that the first uses the Newton-Raphson algorithm and it is faster, whereas the second uses a hybrid algorithm that does not require the Hessian matrix, but in large dimensions the second will be faster. You can chose any of them or all of them. Note that "esag", "iag" and "kent" work only with spherical data.
+"iag" (IAG distribution), "esag" (ESAG distribution), "kent" (Kent distribution), "sc" and "sc2" (spherical Cauchy distribution), "pkbd" and "pkbd2" (Poisson kernel based distribution). The difference between "sc" and "sc2" and between "pkbd" and "pkbd2" is that the first uses the Newton-Raphson algorithm and it is faster, whereas the second uses a hybrid algorithm that does not require the Hessian matrix, but in large dimensions the second will be faster. You can chose any of them or all of them. Note that "esag", "iag" and "kent" work only with spherical data.
 }
 \item{B}{
 If you used k-NN, should a bootstrap correction of the bias be applied? If yes, 1000 is a good value.
@@ -97,13 +97,13 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
     %}
 
 \seealso{
-\code{\link{dirda}, \link{dirknn}, \link{knn.reg}
+\code{\link{esag.da}, \link{vmfda.pred}, \link{dirknn}, \link{knn.reg}
 }
 }
 
 \examples{
 x <- rvmf(300, rnorm(3), 10)
 ina <- sample.int(2, 300, replace = TRUE)
-dirda.cv(x, ina, B = 1)
+dirda.cv(x, ina, B = 1000)
 }
 

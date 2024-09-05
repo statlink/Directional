@@ -1,11 +1,11 @@
 dirda.cv <- function(x, ina, folds = NULL, nfolds = 10, stratified = FALSE,
-                  type = c("vmf", "iag", "esag", "kent", "sc", "pkbd", "purka"),
+                  type = c("vmf", "iag", "esag", "kent", "sc", "pkbd"),
                   seed = NULL, B = 1000) {
 
   if ( is.null(folds) )  folds <- Directional::makefolds(ina, nfolds = nfolds, stratified = stratified, seed = seed)
   nfolds <- length(folds)
 
-  est1 <- est2 <- est3 <- est4 <- est5 <- est6 <- est7 <- list()
+  est1 <- est2 <- est3 <- est4 <- est5 <- est6 <- list()
   for (i in 1:nfolds) {
     est1[[ i ]] <- NA
     est2[[ i ]] <- NA
@@ -13,9 +13,8 @@ dirda.cv <- function(x, ina, folds = NULL, nfolds = 10, stratified = FALSE,
     est4[[ i ]] <- NA
     est5[[ i ]] <- NA
     est6[[ i ]] <- NA
-    est7[[ i ]] <- NA
   }
-  per1 <- per2 <- per3 <- per4 <- per5 <- per6 <- per7 <- NA
+  per1 <- per2 <- per3 <- per4 <- per5 <- per6 <- NA
   p <- dim(x)[2]
 
   if ( sum( type == "vmf") == 1 ) {
@@ -198,7 +197,7 @@ dirda.cv <- function(x, ina, folds = NULL, nfolds = 10, stratified = FALSE,
 
   if ( sum( type == "purka") == 1 ) {
 
-    per7 <- matrix(0, nfolds, 1)
+    per6 <- matrix(0, nfolds, 1)
     colnames(per7) <- "purka"
     g <- max(ina)
     for (i in 1:nfolds) {
@@ -209,7 +208,7 @@ dirda.cv <- function(x, ina, folds = NULL, nfolds = 10, stratified = FALSE,
       id <- ina[-nu]
       for (j in 1:g) {
         mod <- Directional::purka.mle( xtrain[id == j, ])
-        mat[, j] <- Directional::dpurka(xtest, mod$theta, mod$alpha, logden = TRUE)
+        mat[, j] <- Directional::dpurka(xtest, mod$mu, mod$rho, logden = TRUE)
       }
       est7[[ i ]] <- Rfast::rowMaxs(mat)
       per7[i] <- mean(est7[[ i ]] == ina[nu])
@@ -220,8 +219,6 @@ dirda.cv <- function(x, ina, folds = NULL, nfolds = 10, stratified = FALSE,
   perf <- Rfast::colmeans(per)
   names(perf) <- colnames(per)
   names(perf) <- c("vmf", "iag", "esag", "kent", "sc", "pkbd", "purka")
-
-  bbc.perf <- NULL
 
   if ( B > 1 ) {
     ina <- as.numeric( as.factor(ina) ) - 1
@@ -241,4 +238,5 @@ dirda.cv <- function(x, ina, folds = NULL, nfolds = 10, stratified = FALSE,
   }
 
   list(perf = perf, bbc.perf = bbc.perf)
+
 }
