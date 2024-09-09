@@ -2,8 +2,14 @@ Package: Directional
 Type: Package
 Title: A Collection of Functions for Directional Data Analysis
 Version: 6.8
-Date: 2024-09-06
-Author: Michail Tsagris, Giorgos Athineou, Christos Adam, Anamul Sajib, Eli Amson, Micah J. Waldstein and Zehao Yu
+Date: 2024-09-09
+Authors@R: c( person(given = "Michail", family = "Tsagris", role = c("aut", "cre"), email = "mtsagris@uoc.gr"),
+               person(given = "Giorgos", family = "Athineou", role = "aut"), 
+               person(given = "Christos", family = "Adam",role = "aut"),
+               person(given = "Anamul", family = "Sajib", role = "ctb"),
+               person(given = "Eli", family = "Amson", role = "ctb"),
+               person(given = c("Micah", "J."), family = "Waldstein", role = "ctb"),
+               person(given = "Zehao", family = "Yu", role = "aut") )
 Maintainer: Michail Tsagris <mtsagris@uoc.gr>
 Description: A collection of functions for directional data (including massive data, with millions of observations) analysis. 
              Hypothesis testing, discriminant and regression analysis, MLE of distributions and more are included. 
@@ -19,7 +25,7 @@ Description: A collection of functions for directional data (including massive d
 			 Communications in Statistics-Simulation and Computation, 53(3): 1387--1408. <doi:10.1080/03610918.2022.2045499>. 
 			 e) Tsagris M. and Alzeley O. (2023). "Circular and spherical projected Cauchy distributions: A Novel Framework for Circular and Directional Data Modeling". <doi:10.48550/arXiv.2302.02468>. 
 			 f) Zehao Yu and Xianzheng Huang (2024). A new parameterization for elliptically symmetric angular Gaussian distributions of arbitrary dimension. 
-			 Electronic Journal of Statististics, 18(1): 301--334. <doi:10.1214/23-EJS2210>. 
+			 Electronic Journal of Statistics, 18(1): 301--334. <doi:10.1214/23-EJS2210>. 
 			 g) Tsagris M. (2024). "Directional data analysis using the spherical Cauchy and the Poisson-kernel based distribution". <doi:10.48550/arXiv.2409.03292>.
 License: GPL (>= 2)
 Imports:  bigstatsr, doParallel, foreach, ggplot2, grDevices, magrittr, parallel, Rfast, Rfast2, Rnanoflann, rgl, rnaturalearth, sf

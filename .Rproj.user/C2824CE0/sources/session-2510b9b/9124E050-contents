@@ -1,4 +1,0 @@
-m <- colMeans( as.matrix( iris[, 1:3] ) )
-y <- resag(10000, m, c(1, 0.5) )
-system.time(a2 <- esag.mle2(y) )
-system.time(a1 <- esag.mle(y) )
