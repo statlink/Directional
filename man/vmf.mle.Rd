@@ -153,7 +153,7 @@ distribution on the sphere. Biometrika 74(3): 579--589.
 Paine P.J., Preston S.P., Tsagris M. and Wood A.T.A. (2018). An Elliptically Symmetric
 Angular Gaussian Distribution. Statistics and Computing, 28: 689--697.
 
-Tsagris M. and Alzeley O. (2023). Circular and spherical projected Cauchy distributions:
+Tsagris M. and Alzeley O. (2024). Circular and spherical projected Cauchy distributions:
 A Novel Framework for Circular and Directional Data Modeling.
 https://arxiv.org/pdf/2302.02468.pdf
 
