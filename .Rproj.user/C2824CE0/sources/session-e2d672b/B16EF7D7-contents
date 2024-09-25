@@ -5,14 +5,13 @@ spcauchy2test <- function(y1, y2, B = 1) {
   mod2 <- Directional::spcauchy.mle(y2)
   lik1 <- mod1$loglik + mod2$loglik
   stat <- 2 * lik1 - 2 * lik0
-
   if ( B == 1 ) {
     pvalue <- pchisq(stat, dim(y1)[2] - 1, lower.tail = FALSE)
-
   } else {
+
     n1 <- dim(y1)[1]  ;  n2 <- dim(y2)[1]
-    rot1 <- t( Directional::rotation(mod1$mu, mod0$mu) )
-    rot2 <- t( Directional::rotation(mod2$mu, mod0$mu) )
+    rot1 <- t( Directional::rotation(mod1$m, mod0$m) )
+    rot2 <- t( Directional::rotation(mod2$m, mod0$m) )
     x1 <- y1 %*% rot1
     x2 <- y2 %*% rot2
     bstat <- numeric(B)
