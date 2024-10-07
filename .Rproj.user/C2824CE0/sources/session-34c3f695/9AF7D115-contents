@@ -29,7 +29,7 @@ The number of random starts to try. See also R's built-in function \code{\link{k
 }
 
 \details{
-The initial step of the algorithm is not based on a spherical k-means, but on simple k-means. The results are comparable to the package movMF for the mixtures of von Mises-Fisher distributions. The other cases are mixtures of spherical Cauchy distributions or mixtures of Poisson kernel based distributions.
+The initial step of the algorithm is not based on a spherical k-means, but on simple k-means. The results are comparable to the package movMF for the mixtures of von Mises-Fisher distributions. The other cases are mixutres of spherical Cauchy distributions or mixtures of Poisson kernel based distributions.
 }
 
 \value{
@@ -62,9 +62,9 @@ Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the 
 }
 
 \author{
-Michail Tsagris and Panagiotis Papastamoulis.
+Michail Tsagris.
 
-R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr} and Panagiotis Papastamoulis \email{papastamoulis@aueb.gr}.
+R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 }
 %\note{
 %%  ~~further notes~~

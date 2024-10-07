@@ -62,9 +62,9 @@ Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the 
 }
 
 \author{
-Michail Tsagris and Panagiotis Papastamoulis.
+Michail Tsagris.
 
-R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr} and Panagiotis Papastamoulis \email{papastamoulis@aueb.gr}.
+R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 }
 %\note{
 %%  ~~further notes~~

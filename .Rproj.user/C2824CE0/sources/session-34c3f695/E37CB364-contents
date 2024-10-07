@@ -29,7 +29,7 @@ The number of random starts to try. See also R's built-in function \code{\link{k
 }
 
 \details{
-The function computes the BIC to decide on the optimal number of clusters when using mixtures of von Mises-Fisher, mixtures of spherical Cauchy or mixtures of Poisson kernel based distributions.
+If the data are not unit vectors, they are transformed into unit vectors.
 }
 
 \value{
@@ -51,7 +51,7 @@ Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the 
 \author{
 Michail Tsagris.
 
-R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
+R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr} and Giorgos Athineou <gioathineou@gmail.com>.
 }
 
 %\note{

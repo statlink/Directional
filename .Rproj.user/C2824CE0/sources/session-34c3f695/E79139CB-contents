@@ -1,18 +1,14 @@
-\name{BIC for the model based clustering using mixtures of rotationally symmetric distributions}
-\alias{bic.mixvmf}
-\alias{bic.mixspcauchy}
+\name{BIC for the model based clustering using mixtures of Poisson kernel based distributions}
 \alias{bic.mixpkbd}
 \title{
-BIC to choose the number of components in a model based clustering using mixtures of rotationally symmetric distributions
+BIC to choose the number of components in a model based clustering using mixtures of Poisson kernel based distributions
 }
 
 \description{
-BIC to choose the number of components in a model based clustering using mixtures of rotationally symmetric distributions
+BIC to choose the number of components in a model based clustering using mixtures of Poisson kernel based distributions
 }
 
 \usage{
-bic.mixvmf(x, G = 5, n.start = 10)
-bic.mixspcauchy(x, G = 5, n.start = 10)
 bic.mixpkbd(x, G = 5, n.start = 10)
 }
 
@@ -29,7 +25,7 @@ The number of random starts to try. See also R's built-in function \code{\link{k
 }
 
 \details{
-The function computes the BIC to decide on the optimal number of clusters when using mixtures of von Mises-Fisher, mixtures of spherical Cauchy or mixtures of Poisson kernel based distributions.
+If the data are not unit vectors, they are transformed into unit vectors.
 }
 
 \value{
@@ -43,8 +39,6 @@ The run time of the algorithm. A numeric vector. The first element is the user t
 }
 
 \references{
-Hornik, K. and Grun, B. (2014). movMF: An R package for fitting mixtures of von Mises-Fisher distributions. Journal of Statistical Software, 58(10): 1--31.
-
 Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson-kernel based distribution. https://arxiv.org/pdf/2409.03292
 }
 
@@ -59,13 +53,12 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 %}
 
 \seealso{
-\code{\link{mixvmf.mle}, \link{rmixvmf}, \link{mixvmf.contour}
+\code{\link{mixpkbd.mle}, \link{rmixpkbd}, \link{bic.mixspcauchy}, \link{bic.mixvmf}
 }
 }
 
 \examples{
 x <- as.matrix( iris[, 1:4] )
 x <- x / sqrt( rowSums(x^2) )
-bic.mixvmf(x)
+bic.mixspcauchy(x)
 }
-

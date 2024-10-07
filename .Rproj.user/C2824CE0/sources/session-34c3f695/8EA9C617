@@ -1,26 +1,26 @@
 {
-    "id": "E80B020F",
-    "path": "~/GitHub/Directional/man/spcauchy2test.Rd",
-    "project_path": "man/spcauchy2test.Rd",
+    "id": "8EA9C617",
+    "path": "~/GitHub/Directional/man/mixvmf.mle.Rd",
+    "project_path": "man/mixvmf.mle.Rd",
     "type": "r_doc",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1728316626670.0,
+    "created": 1728317260577.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "34,1",
-        "scrollLine": "13"
+        "cursorPosition": "66,134",
+        "scrollLine": "55"
     },
     "folds": "",
-    "lastKnownWriteTime": 1728316687,
+    "lastKnownWriteTime": 1728317288,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1728316687241,
+    "last_content_update": 1728317288051,
     "read_only": false,
     "read_only_alternatives": []
 }
