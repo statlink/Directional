@@ -1,15 +1,15 @@
-\name{BIC for the model based clustering using mixtures of von Mises-Fisher distributions}
-\alias{bic.mixvmf}
+\name{BIC for the model based clustering using mixtures of spherical Cauchy distributions}
+\alias{bic.mixspcauchy}
 \title{
-BIC to choose the number of components in a model based clustering using mixtures of von Mises-Fisher distributions
+BIC to choose the number of components in a model based clustering using mixtures of spherical Cauchy distributions
 }
 
 \description{
-BIC to choose the number of components in a model based clustering using mixtures of von Mises-Fisher distributions
+BIC to choose the number of components in a model based clustering using mixtures of spherical Cauchy distributions
 }
 
 \usage{
-bic.mixvmf(x, G = 5, n.start = 10)
+bic.mixspcauchy(x, G = 5, n.start = 10)
 }
 
 \arguments{
@@ -39,7 +39,7 @@ The run time of the algorithm. A numeric vector. The first element is the user t
 }
 
 \references{
-Hornik, K. and Grun, B. (2014). movMF: An R package for fitting mixtures of von Mises-Fisher distributions. Journal of Statistical Software, 58(10): 1--31.
+Hornik, K. and Grun, B. (2014). movMF: An R package for fitting mixtures of von Mises-Fisher distributions. Journal of Statistical Software, 58(10):1--31.
 }
 
 \author{

@@ -1,15 +1,15 @@
-\name{Mixtures of von Mises-Fisher distributions}
-\alias{mixvmf.mle}
+\name{Mixtures of spherical Cauchy distributions}
+\alias{mixspcauchy.mle}
 \title{
-Mixtures of von Mises-Fisher distributions
+Mixtures of spherical Cauchy distributions
 }
 
 \description{
-It performs model based clustering for circualr, spherical and hyperspherical data assuming von Mises-Fisher distributions.
+It performs model based clustering for circualr, spherical and hyperspherical data assuming spherical Cauchy distributions.
 }
 
 \usage{
-mixvmf.mle(x, g, n.start = 10)
+mixspcauchy.mle(x, g, n.start = 10)
 }
 
 \arguments{
@@ -25,7 +25,7 @@ The number of random starts to try. See also R's built-in function \code{\link{k
 }
 
 \details{
-The initial step of the algorithm is not based on a spherical k-means, but on simple k-means. The results are comparable to the package movMF.
+The initial step of the algorithm is not based on a spherical k-means, but on simple k-means.
 }
 
 \value{
@@ -39,6 +39,9 @@ The value of the maximised log-likelihood.
 \item{pred}{
 The predicted group of each observation.
 }
+\item{w}{
+The estimated probabilities of each observation to belong to each cluster.
+}
 \item{iter}{
 The number of iteration required by the EM algorithm.
 }
@@ -48,21 +51,19 @@ The run time of the algorithm. A numeric vector. The first element is the user t
 }
 
 \references{
-Kurt Hornik and  Bettina Grun (2014). movMF: An R Package for Fitting Mixtures of von Mises-Fisher Distributions
-http://cran.r-project.org/web/packages/movMF/vignettes/movMF.pdf
+Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson-kernel based distribution. https://arxiv.org/pdf/2409.03292
 }
 
 \author{
-Michail Tsagris.
+Michail Tsagris and Panagiotis Papastamoulis.
 
-R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
+R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr} and Panagiotis Papastamoulis \email{papastamoulis@aueb.gr}.
 }
 %\note{
 %%  ~~further notes~~
 %}
 \seealso{
-\code{\link{rmixvmf}, \link{bic.mixvmf}, \link{mixvmf.contour}, \link{mixspcauchy.mle},
-\link{mixpkbd.mle}
+\code{\link{mixvmf.mle}, \link{bic.mixspcauchy}, \link{mixpkbd.mle}
 }
 }
 
@@ -71,11 +72,8 @@ k <- runif(4, 4, 6)
 prob <- c(0.2, 0.4, 0.3, 0.1)
 mu <- matrix(rnorm(16), ncol = 4)
 mu <- mu / sqrt( rowSums(mu^2) )
-x <- rmixvmf(200, prob, mu, k)$x
-mixvmf.mle(x, 3)
-mixvmf.mle(x, 4)
-mixvmf.mle(x, 5)
+x <- rmixspcauchy(200, prob, mu, k)$x
+mixspcauchy.mle(x, 3)
+mixspcauchy.mle(x, 4)
 }
 
-\keyword{ Model based clustering }
-\keyword{ von Mises-Fisher distribution }
