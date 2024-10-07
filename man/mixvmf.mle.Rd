@@ -70,8 +70,7 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr} and 
 %%  ~~further notes~~
 %}
 \seealso{
-\code{\link{rmixvmf}, \link{bic.mixvmf}, \link{mixvmf.contour}, \link{mixspcauchy.mle},
-\link{mixpkbd.mle}
+\code{\link{rmixvmf}, \link{bic.mixvmf}, \link{mixvmf.contour}
 }
 }
 
