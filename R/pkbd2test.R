@@ -19,7 +19,7 @@ pkbd2test <- function(y1, y2, B = 1) {
     for (i in 1:B) {
       y1b <- x1[sample(n1, n1, replace = TRUE), ]
       y2b <- x2[sample(n2, n2, replace = TRUE), ]
-      lik0 <- Directiona::pk2(y1b, y2b)$loglik
+      lik0 <- Directional::pk2(y1b, y2b)$loglik
       lik1 <- Directional::pkbd.mle(y1b)$loglik + Directional::pkbd.mle(y2b)$loglik
       bstat[i] <- lik1 - lik0
     }

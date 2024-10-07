@@ -15,8 +15,8 @@ Two sample location test for (hyper-)spherical data.
 \usage{
 spcauchy2test(y1, y2, B = 1)
 pkbd2test(y1, y2, B = 1)
-sp2(y1, y2, )
-pk2(y1, y2)
+sp2(y1, y2, tol = 1e-6)
+pk2(y1, y2, tol = 1e-6)
 
 }
 
