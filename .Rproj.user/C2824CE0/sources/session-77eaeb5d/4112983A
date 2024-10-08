@@ -1,0 +1,26 @@
+{
+    "id": "4112983A",
+    "path": "~/GitHub/Directional/R/bic.mixspcauchy.R",
+    "project_path": "R/bic.mixspcauchy.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1728383682453.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "10,95",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1728383238,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1728383238,
+    "read_only": false,
+    "read_only_alternatives": []
+}
