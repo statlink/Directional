@@ -11,9 +11,9 @@ It performs model based clustering for circualr, spherical and hyper-spherical d
 }
 
 \usage{
-mixvmf.mle(x, g, n.start = 10)
-mixspcauchy.mle(x, g, n.start = 10)
-mixpkbd.mle(x, g, n.start = 10)
+mixvmf.mle(x, g, n.start = 10, tol = 1e-6)
+mixspcauchy.mle(x, g, n.start = 10, tol = 1e-6)
+mixpkbd.mle(x, g, n.start = 10, tol = 1e-6)
 }
 
 \arguments{
@@ -25,6 +25,9 @@ The number of groups to fit. It must be greater than or equal to 2.
 }
 \item{n.start}{
 The number of random starts to try. See also R's built-in function \code{\link{kmeans}} for more information about this.
+}
+\item{tol}{
+The tolerance value to terminate the EM algorithm.
 }
 }
 
