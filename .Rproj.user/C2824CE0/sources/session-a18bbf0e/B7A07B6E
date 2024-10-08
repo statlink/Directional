@@ -1,26 +1,26 @@
 {
-    "id": "18863474",
-    "path": "~/GitHub/Directional/man/bic.mixvmf.Rd",
-    "project_path": "man/bic.mixvmf.Rd",
+    "id": "B7A07B6E",
+    "path": "~/GitHub/Directional/man/mixvmf.mle.Rd",
+    "project_path": "man/mixvmf.mle.Rd",
     "type": "r_doc",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1728383734153.0,
+    "created": 1728383733588.0,
     "source_on_save": false,
-    "relative_order": 8,
+    "relative_order": 7,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
         "cursorPosition": "31,14",
-        "scrollLine": "13"
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1728383744,
+    "lastKnownWriteTime": 1728383750,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1728383744231,
+    "last_content_update": 1728383750654,
     "read_only": false,
     "read_only_alternatives": []
 }

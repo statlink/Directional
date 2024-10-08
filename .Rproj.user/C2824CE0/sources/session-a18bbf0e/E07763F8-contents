@@ -1,16 +1,17 @@
-mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
+mixpkbd.mle <- function(x, g = 2, n.start = 10, tol = 1e-6, maxiters = 100) {
 
   fun2 <- function(wlika, rswlika, mu, x, d, g, lika) {
 
     wij <- wlika / rswlika  ## weights
     pj <- c(Rfast::colmeans(wij))   # PANOS
     for (j in 1:g) {
-      a2 <- .wspcauchy.wmle(x, w = wij[, j], tol = tol)
+      a2 <- .wpkbd.wmle(x, w = wij[, j], tol = tol)
       mu[j, ] <- a2$mesos
       g2 <- sum(mu[j, ]^2)
       a <- as.vector(x %*% mu[j, ])
-      #lika[, j] <-  - d * wij[, j] * log( ( sqrt(g2 + 1) - a ) )
-      lika[, j] <-  - d * log( ( sqrt(g2 + 1) - a ) ) + log(pj[j])  #PANOS
+      com <- sqrt(g2 + 1)
+      com2 <- 1 / (com - a)
+      lika[, j] <- 0.5 * (d + 1) * log( com2 ) - 0.5 * (d - 1) * ( log(com - 1) - log(g2) ) + log(pj[j])
     }
 
     #wlika <- wij * exp(lika)
@@ -46,11 +47,13 @@ mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
   } else {
 
     for (j in 1:g) {
-      mod <- spcauchy.mle(x[cl == j, ])
-      gam <- mod$gamma
+      mod <- pkbd.mle(x[cl == j, ])
+      g2 <- mod$gamma^2
       mu[j, ] <- mod$mesos
       a <- as.vector(x %*% mu[j, ])
-      lika[, j] <-  - d * log( sqrt(gam^2 + 1) - a )
+      com <- sqrt(g2 + 1)
+      com2 <- 1 / (com - a)
+      lika[, j] <- 0.5 * (d + 1) * log( com2 ) - 0.5 * (d - 1) * ( log(com - 1) - log(g2) )
     }
 
     wlika <- exp(lika)
@@ -63,7 +66,7 @@ mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
     lik[2] <- ep2$lik
 
     i <- 2
-    while ( lik[i] - lik[i - 1] > tol | i < maxiters ) {
+    while ( lik[i] - lik[i - 1] > tol & i < maxiters) {
       i <- i + 1
       ep <- ep2
       ep2 <- fun2(ep$wlika, ep$rswlika, ep$mu, x, d, g, lika)
@@ -97,7 +100,8 @@ mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
     #wij <- nz
 
     res <- list( param = param, dirparam = dirparam,
-                 loglik = loglik + n * lgamma( 0.5 * (d + 1) ) - 0.5 * n * (d + 1) * log(pi) - n * log(2),
+                 loglik = loglik - 0.5 * n * (d - 1) * log(2) +
+                 n * lgamma(0.5 * (d + 1) ) - n * 0.5 * (d + 1) * log(pi) - n * log(2),
                  pred = ta, w = res$wij, iters = i, runtime = runtime )
   }
 
@@ -109,30 +113,28 @@ mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
 
 
 
-
-
-.wspcauchy.wmle <- function(x, w, tol = 1e-6) {
+.wpkbd.wmle <- function(x, w, tol = 1e-6) {
 
   wx <- w * x
   sw <- sum(w)
   dm <- dim(x)
-  n <- dm[1]  ;  d <- dm[2] - 1
+  n <- dm[1]  ;  d <- dm[2]
 
-  sp <- function(rho, mu, x, n, d, w, sw) {
+  pkbd <- function(rho, mu, x, n, d, w, sw) {
     a <- as.vector(x %*% mu)
-    d * sw * log(1 - rho^2) - d * sum( w * log1p( rho^2 - 2 * rho * a ) )
+    sw * log( 1 - rho^2 ) - 0.5 * d * sum( w * log1p( rho^2 - 2 * rho * a ) )
   }
 
   mu <- Rfast::colmeans(wx)
   mu <- mu / sqrt(sum(mu^2) )
-  mod <- optimize(sp, c(0, 1), mu = mu, x = x, n = n, d = d, w = w, sw = sw, maximum = TRUE, tol = 1e-6 )
+  mod <- optimize(pkbd, c(0, 1), mu = mu, x = x, n = n, d = d, w = w, sw = sw, maximum = TRUE, tol = 1e-6 )
   rho <- mod$maximum
   lik1 <- mod$objective
 
   down <- 1 + rho^2 - 2 * rho * as.vector( x %*% mu)
   mu <- Rfast::eachcol.apply(rho * wx, down, oper = "/")
   mu <- mu / sqrt( sum(mu^2) )
-  mod <- optimize(sp, c(0, 1), mu = mu, x = x, n = n, d = d, w = w, sw = sw, maximum = TRUE, tol = 1e-6 )
+  mod <- optimize(pkbd, c(0, 1), mu = mu, x = x, n = n, d = d, w = w, sw = sw, maximum = TRUE, tol = 1e-6 )
   rho <- mod$maximum
   lik2 <- mod$objective
 
@@ -141,12 +143,10 @@ mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
     down <- 1 + rho^2 - 2 * rho * as.vector( x %*% mu)
     mu <- Rfast::eachcol.apply(rho * wx, down, oper = "/")
     mu <- mu / sqrt( sum(mu^2) )
-    mod <- optimize(sp, c(0, 1), mu = mu, x = x, n = n, d = d, w = w, sw = sw, maximum = TRUE, tol = 1e-6 )
+    mod <- optimize(pkbd, c(0, 1), mu = mu, x = x, n = n, d = d, w = w, sw = sw, maximum = TRUE, tol = 1e-6 )
     rho <- mod$maximum
     lik2 <- mod$objective
   }
   gama <- 2 * rho / (1 - rho^2)
   list( mesos = gama * mu, loglik = lik2 )
 }
-
-

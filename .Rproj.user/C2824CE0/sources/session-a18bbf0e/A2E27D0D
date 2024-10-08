@@ -1,26 +1,26 @@
 {
-    "id": "4FF8A4E1",
-    "path": "~/GitHub/Directional/R/mixvmf.mle.R",
-    "project_path": "R/mixvmf.mle.R",
+    "id": "A2E27D0D",
+    "path": "~/GitHub/Directional/R/bic.mixpkbd.R",
+    "project_path": "R/bic.mixpkbd.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1728383696261.0,
+    "created": 1728383681418.0,
     "source_on_save": false,
-    "relative_order": 4,
+    "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "115,68",
-        "scrollLine": "100"
+        "cursorPosition": "10,95",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1728383632,
+    "lastKnownWriteTime": 1728383245,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1728383632,
+    "last_content_update": 1728383245,
     "read_only": false,
     "read_only_alternatives": []
 }

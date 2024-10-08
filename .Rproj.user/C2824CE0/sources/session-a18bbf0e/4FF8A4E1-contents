@@ -79,7 +79,7 @@ mixvmf.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
     l <- 2
 
     ## Step 3 and beyond
-    while ( abs(lik[l] - lik[l - 1]) > tol | l < maxiters ) {
+    while ( abs(lik[l] - lik[l - 1]) > tol & l < maxiters ) {
       l <- l + 1
       wij <- wexplika / rswexplika  ## weights
       #pj <- Rfast::colmeans(wij)
