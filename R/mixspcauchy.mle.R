@@ -1,4 +1,4 @@
-mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
+mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 500) {
 
   fun2 <- function(wlika, rswlika, mu, x, d, g, lika) {
 

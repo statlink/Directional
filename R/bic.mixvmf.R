@@ -7,7 +7,7 @@
 #### movMF: An R Package for Fitting Mixtures of von Mises-Fisher Distributions
 #### http://cran.r-project.org/web/packages/movMF/vignettes/movMF.pdf
 ################################
-bic.mixvmf <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 100) {
+bic.mixvmf <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500) {
   ## x contains the data
   ## A is the maximum number of clusters, set to 3 by default
   runtime <- proc.time()
