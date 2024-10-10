@@ -1,11 +1,13 @@
-mixpkbd.mle <- function(x, g = 2, n.start = 10, tol = 1e-6, maxiters = 500) {
+mixpkbd.mle <- function(x, g = 2, n.start = 10, tol = 1e-6, maxiters = 100) {
 
-  fun2 <- function(wlika, rswlika, mu, x, d, g, lika) {
+  fun2 <- function(wlika, rswlika, mu, x, d, g, lika, tol, maxiters) {
 
     wij <- wlika / rswlika  ## weights
+    wij[wij < 1e-5] <- 1e-5
+    wij <- wij / Rfast::rowsums(wij)
     pj <- c(Rfast::colmeans(wij))   # PANOS
     for (j in 1:g) {
-      a2 <- .wpkbd.wmle(x, w = wij[, j], tol = tol)
+      a2 <- .wpkbd.wmle(x, w = wij[, j], tol = tol, maxiters = maxiters)
       mu[j, ] <- a2$mesos
       g2 <- sum(mu[j, ]^2)
       a <- as.vector(x %*% mu[j, ])
@@ -60,16 +62,16 @@ mixpkbd.mle <- function(x, g = 2, n.start = 10, tol = 1e-6, maxiters = 500) {
     rswlika <- Rfast::rowsums(wlika)
     #lik <- sum( log( rswlika ) )  ## initial log-likelihood
 
-    ep <- fun2(wlika, rswlika, mu, x, d, g, lika)
+    ep <- fun2(wlika, rswlika, mu, x, d, g, lika, tol, maxiters)
     lik[1] <- ep$lik
-    ep2 <- fun2(ep$wlika, ep$rswlika, ep$mu, x, d, g, lika)
+    ep2 <- fun2(ep$wlika, ep$rswlika, ep$mu, x, d, g, lika, tol, maxiters)
     lik[2] <- ep2$lik
 
     i <- 2
     while ( lik[i] - lik[i - 1] > tol & i < maxiters) {
       i <- i + 1
       ep <- ep2
-      ep2 <- fun2(ep$wlika, ep$rswlika, ep$mu, x, d, g, lika)
+      ep2 <- fun2(ep$wlika, ep$rswlika, ep$mu, x, d, g, lika, tol, maxiters)
       lik[i] <- ep2$lik
     }
     res <- ep2
@@ -113,7 +115,7 @@ mixpkbd.mle <- function(x, g = 2, n.start = 10, tol = 1e-6, maxiters = 500) {
 
 
 
-.wpkbd.wmle <- function(x, w, tol = 1e-6) {
+.wpkbd.wmle <- function(x, w, tol = 1e-6, maxiters = 100) {
 
   wx <- w * x
   sw <- sum(w)
@@ -137,8 +139,10 @@ mixpkbd.mle <- function(x, g = 2, n.start = 10, tol = 1e-6, maxiters = 500) {
   mod <- optimize(pkbd, c(0, 1), mu = mu, x = x, n = n, d = d, w = w, sw = sw, maximum = TRUE, tol = 1e-6 )
   rho <- mod$maximum
   lik2 <- mod$objective
-
-  while ( abs( lik2 - lik1 ) > tol ) {
+  
+  i <- 2
+  while ( abs( lik2 - lik1 ) > tol & i < maxiters) {
+    i <- i + 1
     lik1 <- lik2
     down <- 1 + rho^2 - 2 * rho * as.vector( x %*% mu)
     mu <- Rfast::eachcol.apply(rho * wx, down, oper = "/")
