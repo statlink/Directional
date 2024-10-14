@@ -23,12 +23,10 @@ bic.mixvmf <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500) {
   runtime <- proc.time() - runtime
   names(bic) <- 1:G
   ina <- rep(1, G)
-  ina[which.min(bic)] <- 3  ## chosen number of clusters will
-  ## appear with red on the plot
-  plot(1:G, bic, col = ina, xlab = "Number of components",
-  ylab = "BIC values")
+  ina[ which.min(bic) ] <- 3  ## chosen number of clusters will appear with red on the plot
+  plot(1:G, bic, col = ina, xlab = "Number of components", ylab = "BIC values")
   abline(v = 1:G, lty = 2, col = "lightgrey")
-  abline(h = seq(min(bic), max(bic), length = 10), lty = 2, col = "lightgrey" )
+  abline(h = seq(min(bic, na.rm = FALSE), max(bic, na.rm = FALSE), length = 10), lty = 2, col = "lightgrey" )
   lines(1:G, bic, lwd = 2)
   points(1:G, bic, pch = 9, col = ina)
   list(bic = bic, runtime = runtime)
