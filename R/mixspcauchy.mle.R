@@ -7,14 +7,14 @@ mixspcauchy.mle <- function(x, g, tol = 1e-6, maxiters = 100) {
 
   w <- mod@posterior$scaled
   dirparam <- t( flexmix::parameters(mod) )
-  d <- dim(dirparam)[1]
+  d <- dim(dirparam)[2]
   param <- dirparam <- cbind( Rfast::colmeans(w), dirparam[, d], dirparam[, -d] )
   param[, 2] <- 2 * dirparam[, 2] / (1 - dirparam[, 2]^2)
   param[, -c(1:2)] <- sqrt(param[, 2]) * param[, -c(1:2)]
 
-  colnames(param) <- c( "probs", "gama", paste("mu", 1:d, sep = "") )
+  colnames(param) <- c( "probs", "gama", paste("mesos", 1:d, sep = "") )
   colnames(dirparam) <- c( "probs", "rho", paste("mu", 1:d, sep = "") )
-  rownames(param) <- rownames(dirparam) <- paste("Cluster", 1:g, sep = " ")
+  rownames(param) <- rownames(dirparam) <- paste("Cluster", 1:dim(param)[1], sep = " ")
 
   list( param = param, dirparam = dirparam, loglik = mod@logLik,
         pred = mod@cluster, w = w, runtime = runtime  )
