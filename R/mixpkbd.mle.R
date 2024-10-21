@@ -2,8 +2,7 @@ mixpkbd.mle <- function(x, g, tol = 1e-6, maxiters = 100) {
 
   d <- dim(x)[2]
   runtime <- proc.time()
-  require(circlus, quiet = TRUE, warn.conflicts = FALSE)
-  mod <- flexmix::flexmix( x ~ 1, k = g, model = FLXMCpkbd(),
+  mod <- flexmix::flexmix( x ~ 1, k = g, model = circlus::FLXMCpkbd(),
                            control = list(tol = tol, iter = maxiters) )
   runtime <- proc.time() - runtime
 

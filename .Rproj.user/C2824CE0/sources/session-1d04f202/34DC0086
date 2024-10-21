@@ -3,7 +3,7 @@
     "path": "~/GitHub/Directional/R/mixpkbd.mle.R",
     "project_path": "R/mixpkbd.mle.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "1739655765",
     "contents": "",
     "dirty": false,
     "created": 1729516684584.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "4,56",
+        "cursorPosition": "3,24",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1729520404,
+    "lastKnownWriteTime": 1729520626,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1729520404944,
+    "last_content_update": 1729520626034,
     "read_only": false,
     "read_only_alternatives": []
 }
