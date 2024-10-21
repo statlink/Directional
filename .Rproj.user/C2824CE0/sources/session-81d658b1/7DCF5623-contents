@@ -1,0 +1,18 @@
+mod <- pkbd.mle(x)
+g2 <- mod$gamma^2
+mu <- mod$mesos
+a <- as.vector(x %*% mu)
+com <- sqrt(g2 + 1)
+com2 <- 1 / (com - a)
+f1 <- 0.5 * (d + 1) * log( com2 ) - 0.5 * (d - 1) * ( log(com - 1) - log(g2) )
+
+
+
+mod <- pkbd.mle2(x)
+g2 <- ( 2 * mod$rho / (1 - mod$rho^2) ) ^2
+mu <- sqrt(g2) * mod$mu
+a <- as.vector(x %*% mu)
+com <- sqrt(g2 + 1)
+com2 <- 1 / (com - a)
+f2 <- 0.5 * (d + 1) * log( com2 ) - 0.5 * (d - 1) * ( log(com - 1) - log(g2) )
+

@@ -1,26 +1,26 @@
 {
-    "id": "636E4D67",
-    "path": "~/GitHub/Directional/R/mixspcauchy.mle.R",
-    "project_path": "R/mixspcauchy.mle.R",
+    "id": "CFD64CA6",
+    "path": "~/GitHub/Directional/R/mixpkbd.mle.R",
+    "project_path": "R/mixpkbd.mle.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1729508326111.0,
+    "created": 1729509275870.0,
     "source_on_save": false,
-    "relative_order": 1,
+    "relative_order": 2,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "50,39",
-        "scrollLine": "38"
+        "cursorPosition": "58,0",
+        "scrollLine": "50"
     },
     "folds": "",
-    "lastKnownWriteTime": 1729508345,
+    "lastKnownWriteTime": 1729509845,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1729508345126,
+    "last_content_update": 1729509845385,
     "read_only": false,
     "read_only_alternatives": []
 }

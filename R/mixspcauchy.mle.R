@@ -49,9 +49,9 @@ mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
 
     for (j in 1:g) {
       mod <- Directional::spcauchy.mle2(x[cl == j, ])
-      gam <- mod$gamma
-      mu[j, ] <- mod$mesos
-      a <- as.vector(x %*% mu[j, ])
+      gam <- 2 * mod$rho / (1 - mod$rho^2)
+      mu[j, ] <- mod$ gam * mod$mu
+      a <- as.vector(x %*% mu[j, ] )
       lika[, j] <-  - d * log( sqrt(gam^2 + 1) - a )
     }
 
