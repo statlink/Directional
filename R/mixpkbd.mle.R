@@ -1,6 +1,5 @@
 mixpkbd.mle <- function(x, g, tol = 1e-6, maxiters = 100) {
 
-  d <- dim(x)[2]
   runtime <- proc.time()
   mod <- flexmix::flexmix( x ~ 1, k = g, model = circlus::FLXMCpkbd(),
                            control = list(tol = tol, iter = maxiters) )
@@ -8,7 +7,8 @@ mixpkbd.mle <- function(x, g, tol = 1e-6, maxiters = 100) {
 
   w <- mod@posterior$scaled
   dirparam <- t( flexmix::parameters(mod) )
-  param <- dirparam <- cbind( Rfast::colmeans(w), dirparam[, d + 1], dirparam[, 1:d] )
+  d <- dim(param)[1]
+  param <- dirparam <- cbind( Rfast::colmeans(w), dirparam[, d], dirparam[, -d] )
   param[, 2] <- 2 * dirparam[, 2] / (1 - dirparam[, 2]^2)
   param[, -c(1:2)] <- sqrt(param[, 2]) * param[, -c(1:2)]
 
