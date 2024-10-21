@@ -11,9 +11,9 @@ It performs model based clustering for circualr, spherical and hyper-spherical d
 }
 
 \usage{
-mixvmf.mle(x, g, n.start = 10, tol = 1e-6, maxiters = 100)
-mixspcauchy.mle(x, g, n.start = 10, tol = 1e-6, maxiters = 100)
-mixpkbd.mle(x, g, n.start = 10, tol = 1e-6, maxiters = 100)
+mixvmf.mle(x, g, n.start = 10, tol = 1e-6, maxiters = 500)
+mixspcauchy.mle(x, g, n.start = 10, tol = 1e-6, maxiters = 500)
+mixpkbd.mle(x, g, n.start = 10, tol = 1e-6, maxiters = 500)
 }
 
 \arguments{

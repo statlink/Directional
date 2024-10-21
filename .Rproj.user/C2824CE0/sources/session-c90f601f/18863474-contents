@@ -11,9 +11,9 @@ BIC to choose the number of components in a model based clustering using mixture
 }
 
 \usage{
-bic.mixvmf(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 100)
-bic.mixspcauchy(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 100)
-bic.mixpkbd(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 100)
+bic.mixvmf(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500)
+bic.mixspcauchy(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500)
+bic.mixpkbd(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500)
 }
 
 \arguments{
