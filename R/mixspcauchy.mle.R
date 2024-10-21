@@ -41,7 +41,7 @@ mixspcauchy.mle <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
   cl <- ini$cluster
   wij <- tabulate(cl)
 
-  if ( min(wij) <= g + d ) {
+  if ( min(wij) <= 3 ) {
     mess <- paste( "Too many clusters to fit for this data. Try one less" )
     res <- list(mess = mess, loglik = NA)
 
