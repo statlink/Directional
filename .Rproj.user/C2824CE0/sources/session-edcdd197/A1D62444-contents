@@ -8,7 +8,7 @@ mixpkbd.mle <- function(x, g, tol = 1e-6, maxiters = 100) {
 
   w <- mod@posterior$scaled
   dirparam <- t( flexmix::parameters(mod) )
-  param <- dirparam <- cbind( Rfast::colmeans(w), dirparam[, d + 1], dirparam[, -c(d + 1)] )
+  param <- dirparam <- cbind( Rfast::colmeans(w), dirparam[, d + 1, drop = FALSE], dirparam[, -c(d + 1), drop = FALSE] )
   param[, 2] <- 2 * dirparam[, 2] / (1 - dirparam[, 2]^2)
   param[, -c(1:2)] <- sqrt(param[, 2]) * param[, -c(1:2)]
 
