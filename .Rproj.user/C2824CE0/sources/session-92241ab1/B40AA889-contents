@@ -1,10 +1,10 @@
-mixpkbd.mle2 <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
+mixspcauchy.mle2 <- function(x, g, n.start = 10, tol = 1e-6, maxiters = 100) {
 
   d <- dim(x)[2]
   runtime <- proc.time()
-  mod <- flexmix::initFlexmix( x ~ 1, k = g, model = circlus::FLXMCpkbd(),
+  mod <- flexmix::initFlexmix( x ~ 1, k = g, model = circlus::FLXMCspcauchy(),
                                control = list(minprior = 0), nrep = n.start )
-  mod <- flexmix::flexmix( x ~ 1, cluster = mod@cluster, model = circlus::FLXMCpkbd(),
+  mod <- flexmix::flexmix( x ~ 1, cluster = mod@cluster, model = circlus::FLXMCspcauchy(),
                            control = list(tol = tol, iter = maxiters) )
   runtime <- proc.time() - runtime
 
