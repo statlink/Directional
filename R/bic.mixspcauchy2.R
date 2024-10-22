@@ -1,17 +1,25 @@
-bic.mixspcauchy <- function(x, G = 5, n.start = 5, tol = 1e-6, maxiters = 500) {
+bic.mixspcauchy2 <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500) {
   ## x contains the data
   ## A is the maximum number of clusters, set to 3 by default
   runtime <- proc.time()
   logn <- log( dim(x)[1] )  ## sample size of the data
   p <- dim(x)[2]  ## dimensionality of the data
   bic <- 1:G
-  mod <- Directional::spcauchy.mle(x)
-  bic[1] <-  - 2 * mod$loglik+ p * logn  ## BIC assuming one cluster
+
+  mod <- flexmix::initFlexmix( x ~ 1, k = g, model = circlus::FLXMCspcauchy(),
+                               control = list(minprior = 0), nrep = n.start )
+  mod <- flexmix::flexmix( x ~ 1, cluster = mod@cluster, model = circlus::FLXMCspcauchy(),
+                           control = list(tol = tol, iter = maxiters) )
+  bic[1] <-  BIC(mod)
   for (vim in 2:G) {
-    a <- Directional::mixspcauchy.mle(x, vim, n.start = n.start, tol = tol, maxiters = maxiters)  ## model based clustering for some possible clusters
-    bic[vim] <-  -2 * a$loglik + ( (vim - 1) + vim * p ) * logn
+    a <- flexmix::initFlexmix( x ~ 1, k = vim, model = circlus::FLXMCspcauchy(),
+                               control = list(minprior = 0), nrep = n.start)
+    a <- flexmix::flexmix( x ~ 1, cluster = a@cluster, model = circlus::FLXMCspcauchy(),
+                           control = list(tol = tol, iter = maxiters) )
+    bic[vim] <- BIC(a)
   }  ## BIC for a range of different clusters
   runtime <- proc.time() - runtime
+
   names(bic) <- 1:G
   ina <- rep(1, G)
   ina[ which.min(bic) ] <- 3  ## chosen number of clusters will appear with red on the plot
