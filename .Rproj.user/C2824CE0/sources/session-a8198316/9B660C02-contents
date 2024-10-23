@@ -1,4 +1,4 @@
-bic.mixpkbd2 <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500) {
+icl.mixpkbd2 <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500) {
   ## x contains the data
   ## A is the maximum number of clusters, set to 3 by default
   runtime <- proc.time()
@@ -13,6 +13,7 @@ bic.mixpkbd2 <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500) {
                                control = list(minprior = 0), nrep = n.start)
     a <- flexmix::flexmix( x ~ 1, cluster = a@cluster, model = circlus::FLXMCpkbd(),
                            control = list(tol = tol, iter = maxiters) )
+    w <- a@posterior$scaled + sum( a$w * log(a$w), na.rm = TRUE )
     bic[vim] <- BIC(a)
   }  ## BIC for a range of different clusters
   runtime <- proc.time() - runtime
@@ -20,7 +21,7 @@ bic.mixpkbd2 <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500) {
   names(bic) <- 1:G
   ina <- rep(1, G)
   ina[ which.min(bic) ] <- 3  ## chosen number of clusters will appear with red on the plot
-  plot(1:G, bic, col = ina, xlab = "Number of components", ylab = "BIC values", cex.lab = 1.3, cex.axis = 1.3)
+  plot(1:G, bic, col = ina, xlab = "Number of components", ylab = "ICL values", cex.lab = 1.3, cex.axis = 1.3)
   abline(v = 1:G, lty = 2, col = "lightgrey")
   abline(h = seq(min(bic, na.rm = FALSE), max(bic, na.rm = FALSE), length = 10), lty = 2, col = "lightgrey" )
   lines(1:G, bic, lwd = 2)
