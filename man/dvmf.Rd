@@ -26,7 +26,7 @@ A matrix or a vector with the data expressed in Euclidean coordinates, i.e. unit
 }
 \item{mu}{
 The mean direction (unit vector) of the von Mises-Fisher, the IAG, the spherical Cauchy distribution,
-or of the Poisson kernel based distribution.
+or of the Poisson kernel-based distribution.
 }
 \item{theta}{
 The mean direction (unit vector) of the Purkayastha distribution.
@@ -39,7 +39,7 @@ The concentration parameter of the Purkayastha distribution.
 }
 \item{rho}{
 The \eqn{\rho} parameter of the spherical Cauchy distribution, or of the
-Poisson kernel based distribution.
+Poisson kernel-based distribution.
 }
 \item{logden}{
 If you the logarithm of the density values set this to TRUE.
@@ -47,7 +47,7 @@ If you the logarithm of the density values set this to TRUE.
 }
 
 \details{
-The density of the von Mises-Fisher, of the IAG, of the Purkayastha, of the spherical Cauchy distribution, or of the Poisson kernel based distribution is computed.
+The density of the von Mises-Fisher, of the IAG, of the Purkayastha, of the spherical Cauchy distribution, or of the Poisson kernel-based distribution is computed.
 }
 
 \value{

@@ -56,7 +56,7 @@ A positive number determing the range of degrees to move up and down from the lo
 }
 
 \details{
-The goal of this function is for the user to see how the von Mises-Fisher, the Purkayastha, the spherical Cauchy or the Poisson kernel based distribution looks like.
+The goal of this function is for the user to see how the von Mises-Fisher, the Purkayastha, the spherical Cauchy or the Poisson kernel-based distribution looks like.
 }
 
 \value{

@@ -36,7 +36,7 @@ The tolerance value at which to terminate the iterations.
 }
 
 \details{
-A log-likelihood ratio based test for the equality of two location parameters, assuming that the data in each group follow the spherical Cauchy of the Poisson-kernel based distribution. Bootstrap is also offered.
+A log-likelihood ratio based test for the equality of two location parameters, assuming that the data in each group follow the spherical Cauchy of the Poisson kernel-based distribution. Bootstrap is also offered.
 
 The functions sp2() and pk2() estimate the common location of the two groups assuming unequal concentration parameters. These functions are used the compute the log-likelihood under the null hypothesis.
 }
@@ -82,7 +82,7 @@ Kato S. and McCullagh P. (2020). Some properties of a Cauchy family on the spher
 Golzy M. and Markatou M. (2020). Poisson kernel-based clustering on the sphere: convergence properties,
 identifiability, and a method of sampling. Journal of Computational and Graphical Statistics, 29(4): 758--770.
 
-Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson-kernel based distribution.
+Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson kernel-based distribution.
 https://arxiv.org/pdf/2409.03292
 }
 

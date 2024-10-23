@@ -38,7 +38,7 @@ If you the logarithm of the density values set this to TRUE.
 }
 
 \details{
-The function computes the density for a given mixture of von Mises-Fisher, spherical Cauchy or Poisson kernel based distributions.
+The function computes the density for a given mixture of von Mises-Fisher, spherical Cauchy or Poisson kernel-based distributions.
 }
 
 \value{
@@ -49,7 +49,7 @@ A vector with the (log) density values of y.
 Kurt Hornik and  Bettina Grun (2014). movMF: An R Package for Fitting Mixtures of von Mises-Fisher Distributions
 http://cran.r-project.org/web/packages/movMF/vignettes/movMF.pdf
 
-Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson-kernel based distribution. https://arxiv.org/pdf/2409.03292
+Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson kernel-based distribution. https://arxiv.org/pdf/2409.03292
 }
 
 \author{

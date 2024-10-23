@@ -32,7 +32,7 @@ A vector with the concentration parameter of each group.
 }
 
 \details{
-The function simulates random values simulation from a given mixture of von Mises-Fisher, spherical Cauchy or Poisson kernel based distributions.
+The function simulates random values simulation from a given mixture of von Mises-Fisher, spherical Cauchy or Poisson kernel-based distributions.
 }
 
 \value{
@@ -49,7 +49,7 @@ A matrix with the simulated data.
 Kurt Hornik and  Bettina Grun (2014). movMF: An R Package for Fitting Mixtures of von Mises-Fisher Distributions
 http://cran.r-project.org/web/packages/movMF/vignettes/movMF.pdf
 
-Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson-kernel based distribution. https://arxiv.org/pdf/2409.03292
+Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson kernel-based distribution. https://arxiv.org/pdf/2409.03292
 }
 
 \author{

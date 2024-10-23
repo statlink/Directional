@@ -24,10 +24,10 @@ The concentration parameter.
 }
 \item{mu}{
 The mean direction (unit vector) of the von Mises-Fisher, the IAG, the spherical Cauchy distribution,
-or the Poisson kernel based distribution.
+or the Poisson kernel-based distribution.
 }
 \item{rho}{
-The \eqn{\rho} parameter of the spherical Cauchy distribution, or the Poisson kernel based distribution.
+The \eqn{\rho} parameter of the spherical Cauchy distribution, or the Poisson kernel-based distribution.
 }
 \item{theta}{
 The median direction for the Purkayastha distribution, a unit vector.

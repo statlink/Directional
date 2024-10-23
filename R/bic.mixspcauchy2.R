@@ -3,11 +3,11 @@ bic.mixspcauchy2 <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500)
   ## A is the maximum number of clusters, set to 3 by default
   runtime <- proc.time()
   logn <- log( dim(x)[1] )  ## sample size of the data
-  bic <- 1:G
+  bic <- icl <- 1:G
 
   mod <- flexmix::flexmix( x ~ 1, k = 1, model = circlus::FLXMCspcauchy(),
                            control = list(tol = tol, iter = maxiters) )
-  bic[1] <-  BIC(mod)
+  bic[1] <- icl[1] <- BIC(mod)
   for ( vim in 2:G ) {
     a <- flexmix::initFlexmix( x ~ 1, k = vim, model = circlus::FLXMCspcauchy(),
                                control = list(minprior = 0), nrep = n.start)
@@ -15,6 +15,7 @@ bic.mixspcauchy2 <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500)
                            control = list(tol = tol, iter = maxiters) )
     w <- a@posterior$scaled
     bic[vim] <- BIC(a)
+    icl[vim] <- bic[vim] - sum( a$w * log(a$w), na.rm = TRUE )
   }  ## BIC for a range of different clusters
   runtime <- proc.time() - runtime
 
@@ -26,5 +27,5 @@ bic.mixspcauchy2 <- function(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500)
   abline(h = seq(min(bic, na.rm = FALSE), max(bic, na.rm = FALSE), length = 10), lty = 2, col = "lightgrey" )
   lines(1:G, bic, lwd = 2)
   points(1:G, bic, pch = 9, col = ina)
-  list(bic = bic, runtime = runtime)
+  list(bic = bic, icl = icl, runtime = runtime)
 }

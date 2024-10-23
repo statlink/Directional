@@ -39,7 +39,7 @@ The maximum number of iterations to perform.
 }
 
 \details{
-The initial step of the algorithm is not based on a spherical k-means, but on simple k-means. The results are comparable to the package movMF for the mixtures of von Mises-Fisher distributions. The other cases are mixtures of spherical Cauchy distributions or mixtures of Poisson kernel based distributions.
+The initial step of the algorithm is not based on a spherical k-means, but on simple k-means. The results are comparable to the package movMF for the mixtures of von Mises-Fisher distributions. The other cases are mixtures of spherical Cauchy distributions or mixtures of Poisson kernel-based distributions.
 }
 
 \value{
@@ -68,7 +68,7 @@ The run time of the algorithm. A numeric vector. The first element is the user t
 Kurt Hornik and  Bettina Grun (2014). movMF: An R Package for Fitting Mixtures of von Mises-Fisher Distributions
 http://cran.r-project.org/web/packages/movMF/vignettes/movMF.pdf
 
-Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson-kernel based distribution. https://arxiv.org/pdf/2409.03292
+Tsagris M. (2024). Directional data analysis using the spherical Cauchy and the Poisson kernel-based distribution. https://arxiv.org/pdf/2409.03292
 }
 
 \author{
