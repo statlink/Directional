@@ -2,8 +2,6 @@
 \alias{bic.mixvmf}
 \alias{bic.mixspcauchy}
 \alias{bic.mixpkbd}
-\alias{bic.mixspcauchy2}
-\alias{bic.mixpkbd2}
 \title{
 BIC to choose the number of components in a model based clustering using mixtures of rotationally symmetric distributions
 }
@@ -16,8 +14,6 @@ BIC to choose the number of components in a model based clustering using mixture
 bic.mixvmf(x, G = 5, n.start = , tol = 1e-6, maxiters = 500)
 bic.mixspcauchy(x, G = 5, n.start = 5, tol = 1e-6, maxiters = 500)
 bic.mixpkbd(x, G = 5, n.start = 5, tol = 1e-6, maxiters = 500)
-bic.mixspcauchy2(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500)
-bic.mixpkbd2(x, G = 5, n.start = 10, tol = 1e-6, maxiters = 500)
 }
 
 \arguments{

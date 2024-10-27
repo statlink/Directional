@@ -2,7 +2,7 @@ Package: Directional
 Type: Package
 Title: A Collection of Functions for Directional Data Analysis
 Version: 6.9
-Date: 2024-10-23
+Date: 2024-10-27
 Authors@R: c( person(given = "Michail", family = "Tsagris", role = c("aut", "cre"), email = "mtsagris@uoc.gr"),
                person(given = "Giorgos", family = "Athineou", role = "aut"), 
                person(given = "Christos", family = "Adam",role = "aut"),
@@ -29,7 +29,7 @@ Description: A collection of functions for directional data (including massive d
 			 f) Tsagris M. and Alzeley O. (2024). "Circular and spherical projected Cauchy distributions: A Novel Framework for Circular and Directional Data Modeling". <doi:10.48550/arXiv.2302.02468>. 
 			 g) Tsagris M. (2024). "Directional data analysis using the spherical Cauchy and the Poisson-kernel based distribution". <doi:10.48550/arXiv.2409.03292>.
 License: GPL (>= 2)
-Imports:  bigstatsr, circlus, doParallel, flexmix, foreach, ggplot2, grDevices, magrittr, parallel, Rfast, Rfast2, Rnanoflann, rgl, rnaturalearth, sf
+Imports:  bigstatsr, doParallel, foreach, ggplot2, grDevices, magrittr, parallel, Rfast, Rfast2, Rnanoflann, rgl, rnaturalearth, sf
 Suggests: bigreadr
 RoxygenNote: 6.1.1
 
