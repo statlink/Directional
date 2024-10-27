@@ -2,6 +2,8 @@
 \alias{mixvmf.mle}
 \alias{mixspcauchy.mle}
 \alias{mixpkbd.mle}
+\alias{mixspcauchy.mle2}
+\alias{mixpkbd.mle2}
 \title{
 Mixtures of rotationally symmetric distributions
 }
@@ -14,6 +16,8 @@ It performs model based clustering for circualr, spherical and hyper-spherical d
 mixvmf.mle(x, g, n.start = 5, tol = 1e-6, maxiters = 100)
 mixspcauchy.mle(x, g, n.start = 5, tol = 1e-6, maxiters = 100)
 mixpkbd.mle(x, g, n.start = 5, tol = 1e-6, maxiters = 100)
+mixspcauchy.mle2(x, g, n.start = 10, tol = 1e-6, maxiters = 100)
+mixpkbd.mle2(x, g, n.start = 10, tol = 1e-6, maxiters = 100)
 }
 
 \arguments{
