@@ -5,7 +5,7 @@ Spherical-Spherical regression
 }
 
 \description{
-Regression when both the dependent and independent variables are spherical.
+It performs regression when both the dependent and independent variables are spherical.
 }
 
 \usage{
@@ -22,13 +22,10 @@ The dependent variable; a matrix with either two columns, latitude and longitude
 \item{rads}{
 If the data are expressed in latitude and longitude then it matter to know if they are in radians or degrees. If they are in radians, then this should be TRUE and FALSE otherwise. If the previous argument, euclidean, is TRUE, this one does not matter what its value is.
 }
-\item{xnew}{
-The new values of some spherical independent variable(s) whose spherical response values you want to predict. If you have no new x values, leave it NULL (default).
-}
 }
 
 \details{
-Spherical regression as proposed by Chang (1986) is implemented. If the estimated rotation matrix has a determinant equal to -1, singular value decomposition is performed and the third unit vector is multiplied by -1.
+Spherical regression as proposed by Chang (1986) is implemented. If the estimated rotation matrix has a determinant equal to -1, singualr value decomposition is performed and the last unit vector of the second matrix is multiplied by -1.
 }
 
 \value{
@@ -55,25 +52,27 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr} and 
 %}
 
 \seealso{
-\code{\link{hspher.reg}, \link{spher.cor}, \link{spml.reg}
+\code{\link{spher.cor}, \link{spml.reg}, \link{circ.cor1}, \link{circ.cor2}, \link{sphereplot}
 }
 }
 
 \examples{
-mx <- rnorm(5)
+mx <- rnorm(3)
 mx <- mx/sqrt( sum(mx^2) )
-my <- rnorm(5)
+my <- rnorm(3)
 my <- my/sqrt( sum(my^2) )
 x <- rvmf(100, mx, 15)
 A <- rotation(mx, my)
 y <- x \%*\% t(A)
-mod <- hspher.reg(y, x)
+mod <- spher.reg(y, x)
 A
 mod$A ## exact match, no noise
 y <- x \%*\% t(A)
 y <- y + rvmf(100, colMeans(y), 40)
-mod <- hspher.reg(y, x)
+mod <- spher.reg(y, x)
 A
 mod$A ## noise added, more relistic example
 }
 
+\keyword{ Spherical-Spherical regression }
+\keyword{ Spherical data }
