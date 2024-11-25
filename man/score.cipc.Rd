@@ -9,14 +9,14 @@ Score test for many simple CIPC regressions.
 }
 
 \usage{
-score.cipc(y, x, rads = TRUE, tol = 1e-06)
+score.cipc(y, X, rads = TRUE, tol = 1e-06)
 }
 
 \arguments{
 \item{y}{
 The dependent variable,  a numerical vector, it can be in radians or degrees.
 }
-\item{x}{
+\item{X}{
 A matrix with many numerical independent variables.
 }
 \item{rads}{
