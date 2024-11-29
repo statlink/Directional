@@ -12,7 +12,7 @@ Circular-linear regression, spherical-spherical regression, spherical regression
 Package: \tab Directional\cr
 Type: \tab Package\cr
 Version: \tab 7.0\cr
-Date: \tab 2024-11-25\cr
+Date: \tab 2024-11-29\cr
 License: \tab GPL-2\cr
 }
 }
