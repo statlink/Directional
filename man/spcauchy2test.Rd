@@ -1,8 +1,10 @@
 \name{Two sample location test for (hyper-)spherical data}
 \alias{spcauchy2test}
 \alias{pkbd2test}
+\alias{vmf2test}
 \alias{sp2}
 \alias{pk2}
+\alias{vmf2}
 
 \title{
 Two sample location test for (hyper-)spherical data
@@ -15,9 +17,10 @@ Two sample location test for (hyper-)spherical data.
 \usage{
 spcauchy2test(y1, y2, B = 1)
 pkbd2test(y1, y2, B = 1)
+vmf2test(y1, y2, B = 1)
 sp2(y1, y2, tol = 1e-6)
 pk2(y1, y2, tol = 1e-6)
-
+vmf2(y1, y2, tol = 1e-6)
 }
 
 \arguments{
