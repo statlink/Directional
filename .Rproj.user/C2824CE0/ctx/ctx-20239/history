@@ -1,0 +1,17 @@
+library(Directional)
+mx <- rnorm(3)
+mx <- mx/sqrt( sum(mx^2) )
+my <- rnorm(3)
+my <- my/sqrt( sum(my^2) )
+x <- rvmf(100, mx, 15)
+rvmf
+Directional::rvmf
+mx <- rnorm(3)
+mx <- mx/sqrt( sum(mx^2) )
+my <- rnorm(3)
+my <- my/sqrt( sum(my^2) )
+x <- rvmf(100, mx, 15)
+rotation
+rvmf
+library(Directional)
+rvmf
