@@ -8,7 +8,7 @@ score.spml <- function(y, X, rads = TRUE, tol = 1e-06) {
   n <- dim(u)[1]
   f <-  - 0.5   ;   con <- sqrt(2 * pi) 
   x <- cbind(1, ci) ## do note create a x matrix from scratch
-  mu <- as.vector( Rfast:::spml.mle(y, tol = tol)$mu )
+  mu <- as.vector( Rfast::spml.mle(y, tol = tol)$mu )
   tau <- as.vector( u %*% mu )
   ptau <- pnorm(tau)
   rat <- ptau / ( exp(f * tau^2)/con + tau * ptau )
