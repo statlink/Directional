@@ -16,5 +16,4 @@ cardio.mle <- function(x, rads = FALSE) {
 }
 
 x <- rcardioid(1000, -3, 0.3)
-cardio.mle(x, TRUE)
-mle.cardioid(x)
+cardio.mle(x, T)
