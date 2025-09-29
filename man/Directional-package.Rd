@@ -11,8 +11,8 @@ Circular-linear regression, spherical-spherical regression, spherical regression
 \tabular{ll}{
 Package: \tab Directional\cr
 Type: \tab Package\cr
-Version: \tab 7.3\cr
-Date: \tab 2025-09-22\cr
+Version: \tab 7.4\cr
+Date: \tab 2025-09-29\cr
 License: \tab GPL-2\cr
 }
 }
@@ -65,6 +65,8 @@ Kinley Russell, PhD student at the Johns Hopkins University School of Medicine, 
 Sia Ahmadi found a mistake in the function \code{\link{conc.test}} which has now been corrected.
 
 Rafail Vargiakakis found a bug in the functions \code{\link{circbeta.mle}}, \code{\link{circexp.mle}} and \code{\link{mmvm.mle}}.
+
+Nicholas Foster spotted no output in the functions \code{\link{kuiper}} and \code{\link{watson}}. The same problem occured in two more functions.
 
 If you want more information on many of these algorithms see Chapters 9 and 10 in the following document.
 https://www.researchgate.net/publication/324363311_Multivariate_data_analysis_in_R
