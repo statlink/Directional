@@ -15,5 +15,3 @@ cardio.mle <- function(x, rads = FALSE) {
   list( loglik = -n * log(2 * pi) - mod$value, param = param)
 }
 
-x <- rcardioid(1000, -3, 0.3)
-cardio.mle(x, T)
