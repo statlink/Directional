@@ -66,8 +66,6 @@ Sia Ahmadi found a mistake in the function \code{\link{conc.test}} which has now
 
 Rafail Vargiakakis found a bug in the functions \code{\link{circbeta.mle}}, \code{\link{circexp.mle}} and \code{\link{mmvm.mle}}.
 
-Arhtur Pewsey spotted a bug in the function \code{\link{cardio.mle}} which is now fixed.
-
 Nicholas Foster spotted no output in the functions \code{\link{kuiper}} and \code{\link{watson}}. The same problem occured in two more functions.
 
 If you want more information on many of these algorithms see Chapters 9 and 10 in the following document.
