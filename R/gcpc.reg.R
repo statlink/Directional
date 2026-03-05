@@ -1,4 +1,4 @@
-gcpc.reg <- function(y, x, rads = TRUE, reps = 20, xnew = NULL) {
+gcpc.reg <- function(y, x, rads = TRUE, xnew = NULL) {
 
   lik <- function(param, y, x, y1, y2, y12, n, rho) {
     be <- matrix(param, ncol = 2)
