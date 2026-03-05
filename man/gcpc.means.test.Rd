@@ -73,12 +73,14 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 %}
 
 \seealso{
-\code{\link{hclr.aov}, \link{hcfcirc.boot}, \link{hcfcircboot}
+\code{\link{hcf.circaov}, \link{spcauchy2test}
 }
 }
 
 \examples{
-
+u1 <- rgcpc(50, omega = 2, g = 5, rho = 0.5, rads = TRUE)
+u2 <- rgcpc(50, omega = 2, g = 10, rho = 5, rads = TRUE)
+gcpc.means.test(u1, u2, rads = TRUE)
 }
 
 
