@@ -57,7 +57,7 @@ gcpc.reg <- function(y, x, rads = TRUE, xnew = NULL) {
   rho <- modrho$minimum
   be <- as.vector( optim(as.vector(be), lik, y = y, x = x, y1 = y1, y2 = y2, y12 = y12, n = n, rho = rho)$par )
   mod <- optim( c( log(rho), be ), likreg, y = y, x = x, y1 = y1, y2 = y2,
-                y12 = y12, n = n, control = list(maxit = 5000) )
+                y12 = y12, n = n, control = list(maxit = 5000), method = "BFGS" )
   lika <- mod$value
   mod <- optim( mod$par, likreg, y = y, x = x, y1 = y1, y2 = y2, y12 = y12, n = n,
                 control = list(maxit = 5000), hessian = TRUE )
