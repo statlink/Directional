@@ -1,0 +1,12 @@
+wrapexp.mle <- function(x, rads = FALSE) {
+  if ( !rads )   x <- x * pi / 180
+  n <- length(x)
+  sx <- sum(x)
+
+  lik <- function(lam, n, sx) {
+    n * log(lam) - lam * sx - n * log( 1 - exp( - 2 * pi * lam) )
+  }
+
+  res <- optimize(lik, c(0, 700), n = n, sx = sx, maximum = TRUE)
+  list(lambda = res$maximum, loglik = res$objective)
+}
