@@ -5,7 +5,7 @@
 ################################
 euclid <- function(u) {
   u <- as.matrix(u)
-  if (ncol(u) == 1) u <- t(u)
+  if ( dim(u)[2] == 1 )  u <- t(u)
   u <- pi * u / 180           ## degrees to radians
   clat <- cos(u[, 1])
   U <- cbind(clat * cos(u[, 2]), clat * sin(u[, 2]), sin(u[, 1]))
