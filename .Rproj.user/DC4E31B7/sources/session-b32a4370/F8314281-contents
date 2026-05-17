@@ -2,7 +2,7 @@ Package: Directional
 Type: Package
 Title: A Collection of Functions for Directional Data Analysis
 Version: 7.6
-Date: 2026-05-05
+Date: 2026-05-18
 Authors@R: c( person(given = "Michail", family = "Tsagris", role = c("aut", "cre"), email = "mtsagris@uoc.gr"),
                person(given = "Giorgos", family = "Athineou", role = "aut"), 
                person(given = "Christos", family = "Adam", role = "aut"),
