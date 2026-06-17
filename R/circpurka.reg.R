@@ -8,7 +8,7 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
   x <- model.matrix( ~., data.frame(x) )
 
   suppressWarnings({
-    ini <- as.vector( .reg.nr(z, x)$be )
+    ini <- .reg.nr(z, x)
     mod <- optim(ini, .reg, z = z, x = x, method = "BFGS" )
     lik1 <- mod$value
     mod <- optim(mod$par, .reg, z = z, x = x, hessian = TRUE )
@@ -64,9 +64,7 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
   cbind(-G[, 1] * x, -G[, 2] * x)          # n x 2p, grad of -loglik_i wrt be
 }
 
-.reg.nr <- function(z, x, xnew = NULL, tol = 1e-7, maxiters = 300) {
-
-  tic <- proc.time()
+.reg.nr <- function(z, x, tol = 1e-6, maxiters = 300) {
 
   be <- as.vector( solve( crossprod(x), crossprod(x, z) ) )
 
@@ -91,20 +89,6 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
     be <- be.new ;  l <- l.new
     if (conv)  break
   }
-
-  be <- matrix(be, ncol = 2)
-  runtime <- proc.time() - tic
-
-  est <- NULL
-  if ( !is.null(xnew) ) {
-    xnew <- model.matrix(~., data.frame(xnew))
-    est <- xnew %*% be
-    est <- ( atan(est[, 2]/est[, 1]) + pi * I(est[, 1] < 0) ) %% (2 * pi)
-    if ( !rads )  est <- est * 180 / pi
-  }
-  colnames(be) <- c("Cosinus of y", "Sinus of y")
-  rownames(be) <- colnames(x)
-
-  list(runtime = runtime, iters = i, loglik = - l - dim(x)[1] * log(2), be = be, est = est)
+  be
 }
 
