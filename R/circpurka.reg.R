@@ -1,4 +1,20 @@
-circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
+.reg.score <- function(be, z, x) {
+  be  <- matrix(be, ncol = 2)
+  eta <- x %*% be
+  a <- sqrt( Rfast::rowsums(eta^2) )
+  m <- eta / a
+  A <- Rfast::rowsums(z * m)
+  s <- sqrt(1 - A^2)
+  d <- acos(A)
+  phi <- pi / expm1(pi * a)
+  w <- 1 / a - phi - d
+  tang <- (z - A * m) / s
+  G <- w * m + tang                     # n x 2, grad of loglik_i wrt eta_i
+  - Rfast::colsums( cbind(G[, 1] * x, G[, 2] * x) )          # n x 2p, grad of -loglik_i wrt be
+}
+
+
+circpurka.reg2 <- function(y, x, rads = TRUE, xnew = NULL) {
 
   tic <- proc.time()
   if ( !is.matrix(y) ) {
@@ -17,9 +33,9 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
 
   suppressWarnings({
     ini <- as.vector( solve( crossprod(x), crossprod(x, z) ) )
-    mod <- optim(ini, reg, z = z, x = x, method = "BFGS" )
+    mod <- optim(ini, reg, gr = .reg.score, z = z, x = x, method = "BFGS" )
     lik1 <- mod$value
-    mod <- optim(mod$par, reg, z = z, x = x, hessian = TRUE )
+    mod <- optim(mod$par, reg, gr = .reg.score, z = z, x = x, hessian = TRUE )
     lik2 <- mod$value
     while ( lik1 - lik2 > 1e-6 ) {
       lik1 <- lik2
