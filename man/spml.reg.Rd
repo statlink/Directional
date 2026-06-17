@@ -20,7 +20,8 @@ gcpc.reg(y, x, rads = TRUE, xnew = NULL)
 
 \arguments{
 \item{y}{
-The dependent variable,  a numerical vector, it can be in radians or degrees.
+The dependent variable,  a numerical vector, it can be in radians or degrees, or a numerical
+matrix with two columns containing eigenvectors.
 }
 \item{x}{
 The independent variable(s). Can be Euclidean or categorical (factor variables).
@@ -58,7 +59,7 @@ The number of iterations required until convergence of the Newton-Raphson algori
 The regression coefficients.
 }
 \item{seb}{
-The standard errors of the coefficients.
+The standard errors of the coefficients. This is not returned for the Purkayastha regression model.
 }
 \item{loglik}{
 The value of the maximised log-likelihood.
