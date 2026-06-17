@@ -11,11 +11,11 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
     ini <- .reg.nr(z, x)
     mod1 <- optim(ini, .reg, z = z, x = x, method = "BFGS" )
     lik1 <- mod1$value
-    mod2 <- optim(mod1$par, .reg, z = z, x = x, hessian = TRUE )
+    mod2 <- optim(mod1$par, .reg, z = z, x = x, method = "BFGS", hessian = TRUE )
     lik2 <- mod2$value
     while ( mod1$value - mod2$value > 1e-6 ) {
       mod1 <- mod2
-      mod2 <- try( optim(mod1$par, .reg, z = z, x = x, hessian = TRUE ), silent = TRUE )
+      mod2 <- try( optim(mod1$par, .reg, z = z, x = x, method = "BFGS", hessian = TRUE ), silent = TRUE )
       if ( identical( class(mod2), "try-error" ) )
       mod2 <- mod1
     }
