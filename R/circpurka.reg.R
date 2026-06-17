@@ -9,18 +9,19 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
 
   suppressWarnings({
     ini <- .reg.nr(z, x)
-    mod <- optim(ini, .reg, z = z, x = x, method = "BFGS" )
-    lik1 <- mod$value
-    mod <- optim(mod$par, .reg, z = z, x = x, hessian = TRUE )
-    lik2 <- mod$value
-    while ( lik1 - lik2 > 1e-6 ) {
-      lik1 <- lik2
-      mod <- optim(mod$par, .reg, z = z, x = x, hessian = TRUE )
-      lik2 <- mod$value
+    mod1 <- optim(ini, .reg, z = z, x = x, method = "BFGS" )
+    lik1 <- mod1$value
+    mod2 <- optim(mod1$par, .reg, z = z, x = x, hessian = TRUE )
+    lik2 <- mod2$value
+    while ( mod1$value - mod2$value > 1e-6 ) {
+      mod1 <- mod2
+      mod2 <- try( optim(mod1$par, .reg, z = z, x = x, hessian = TRUE ), silent = TRUE )
+      if ( identical( class(mod2), "try-error" ) )
+      mod2 <- mod1
     }
   })
-  be <- matrix(mod$par, ncol = 2)
-  seb <- solve( mod$hessian )
+  be <- matrix(mod2$par, ncol = 2)
+  seb <- solve( mod2$hessian )
   seb <- matrix( sqrt( diag(seb) ), ncol = 2)
   runtime <- proc.time() - tic
 
@@ -34,7 +35,7 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
   colnames(be) <- colnames(seb) <- c("Cosinus of y", "Sinus of y")
   rownames(be) <- rownames(seb) <- colnames(x)
 
-  list( runtime = runtime, be = be, seb = seb, loglik = - mod$value - dim(x)[1] * log(2), est = est )
+  list( runtime = runtime, be = be, seb = seb, loglik = - mod2$value - dim(x)[1] * log(2), est = est )
 }
 
 
