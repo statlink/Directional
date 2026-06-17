@@ -1,0 +1,26 @@
+{
+    "id": "B2E10D26",
+    "path": "~/GitHub/Directional/R/circpurka.reg.R",
+    "project_path": "R/circpurka.reg.R",
+    "type": "r_source",
+    "hash": "484690310",
+    "contents": "",
+    "dirty": false,
+    "created": 1781723988853.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "19,27",
+        "scrollLine": "10"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1781724031,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1781724031270,
+    "read_only": false,
+    "read_only_alternatives": []
+}
