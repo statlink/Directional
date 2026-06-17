@@ -44,7 +44,9 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
   est <- x %*% be
   a <- sqrt( Rfast::rowsums(est^2) )
   est <- est / a
-  - sum( log(a) - log(1 - exp(-pi * a) ) - a * acos( Rfast::rowsums(z * est) ) )
+  d <- Rfast::rowsums(z * est)
+  d <- pmin( pmax(d, -1 + 1e-20), 1 - 1e-20 )
+  - sum( log(a) - log(1 - exp(-pi * a) ) - a * acos( d ) )
 }
 
 .reg.score <- function(be, z, x) {
