@@ -3,7 +3,7 @@
     "path": "~/GitHub/Directional/R/circpurka.reg.R",
     "project_path": "R/circpurka.reg.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "2896284770",
     "contents": "",
     "dirty": false,
     "created": 1781723988853.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "19,27",
-        "scrollLine": "10"
+        "cursorPosition": "10,34",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1781724031,
+    "lastKnownWriteTime": 1781724926,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1781724031270,
+    "last_content_update": 1781724926843,
     "read_only": false,
     "read_only_alternatives": []
 }
