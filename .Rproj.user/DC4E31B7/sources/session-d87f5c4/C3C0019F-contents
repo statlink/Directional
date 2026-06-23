@@ -1,4 +1,4 @@
-circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6, maxiters = 300) {
+circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL) {
 
   tic <- proc.time()
   if ( !is.matrix(y) ) {
@@ -8,7 +8,7 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6, maxiters =
   x <- model.matrix( ~., data.frame(x) )
 
   suppressWarnings({
-    ini <- .reg.nr(z, x, tol = tol, maxiters = maxiters)
+    ini <- .reg.nr(z, x)
     mod1 <- optim(ini, .reg, z = z, x = x, method = "BFGS" )
     lik1 <- mod1$value
     mod2 <- optim(mod1$par, .reg, z = z, x = x, method = "BFGS" )
@@ -21,8 +21,6 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6, maxiters =
     }
   })
   be <- matrix(mod2$par, ncol = 2)
-  colnames(be) <- c("Cosinus of y", "Sinus of y")
-  rownames(be) <- colnames(x)
   runtime <- proc.time() - tic
 
   est <- NULL
@@ -32,6 +30,8 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6, maxiters =
     est <- ( atan(est[, 2]/est[, 1]) + pi * I(est[, 1] < 0) ) %% (2 * pi)
     if ( !rads )  est <- est * 180 / pi
   }
+  colnames(be) <- c("Cosinus of y", "Sinus of y")
+  rownames(be) <- colnames(x)
 
   list( runtime = runtime, be = be, loglik = - mod2$value - dim(x)[1] * log(2), est = est )
 }
