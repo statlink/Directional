@@ -11,13 +11,14 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6, maxiters =
     ini <- .reg.nr(z, x, tol = tol, maxiters = maxiters)
     mod1 <- optim(ini, .reg, z = z, x = x )
     lik1 <- mod1$value
-    mod2 <- optim(mod1$par, .reg, z = z, x = x )
-    lik2 <- mod2$value
+    mod2 <- try( optim(mod1$par, .reg, z = z, x = x, hessian = TRUE ), silent = TRUE )
+    if ( identical( class(mod2), "try-error" ) ) {
+      mod2 <- mod1
+    } else  lik2 <- mod2$value
     while ( mod1$value - mod2$value > 1e-6 ) {
       mod1 <- mod2
       mod2 <- try( optim(mod1$par, .reg, z = z, x = x, hessian = TRUE ), silent = TRUE )
-      if ( identical( class(mod2), "try-error" ) )
-      mod2 <- mod1
+      if ( identical( class(mod2), "try-error" ) )  mod2 <- mod1
     }
   })
   be <- matrix(mod2$par, ncol = 2)
@@ -30,7 +31,6 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6, maxiters =
     colnames(seb) <- c("Cosinus of y", "Sinus of y")
     rownames(seb) <- colnames(x)
   }
-
 
   runtime <- proc.time() - tic
 
