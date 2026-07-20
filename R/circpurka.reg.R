@@ -9,13 +9,13 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6, maxiters =
 
   suppressWarnings({
     ini <- .reg.nr(z, x, tol = tol, maxiters = maxiters)
-    mod1 <- optim(ini, .reg, z = z, x = x, method = "BFGS" )
+    mod1 <- optim(ini, .reg, z = z, x = x )
     lik1 <- mod1$value
-    mod2 <- optim(mod1$par, .reg, z = z, x = x, method = "BFGS" )
+    mod2 <- optim(mod1$par, .reg, z = z, x = x )
     lik2 <- mod2$value
     while ( mod1$value - mod2$value > 1e-6 ) {
       mod1 <- mod2
-      mod2 <- try( optim(mod1$par, .reg, z = z, x = x, method = "BFGS" ), silent = TRUE )
+      mod2 <- try( optim(mod1$par, .reg, z = z, x = x, hessian = TRUE ), silent = TRUE )
       if ( identical( class(mod2), "try-error" ) )
       mod2 <- mod1
     }
@@ -23,6 +23,15 @@ circpurka.reg <- function(y, x, rads = TRUE, xnew = NULL, tol = 1e-6, maxiters =
   be <- matrix(mod2$par, ncol = 2)
   colnames(be) <- c("Cosinus of y", "Sinus of y")
   rownames(be) <- colnames(x)
+  seb <- NULL
+  if ( !is.null(mod2$hessian) ) {
+    seb <- solve(mod2$hessian)
+    seb <- matrix( sqrt( diag(seb) ), ncol = 2 )
+    colnames(seb) <- c("Cosinus of y", "Sinus of y")
+    rownames(seb) <- colnames(x)
+  }
+
+
   runtime <- proc.time() - tic
 
   est <- NULL
