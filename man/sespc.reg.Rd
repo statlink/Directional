@@ -119,6 +119,4 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 y <- rsespc( 150, rnorm(3), c(1, 1) )
 ## a small grid, so that the example runs quickly for CRAN's checks
 a <- sespc.reg(y, iris[, 4], n.axes = 5)
-## a submodel fitted with the same Q
-b <- sespc.reg(y, iris[, 4], con = FALSE, Q = a$Q)
 }
