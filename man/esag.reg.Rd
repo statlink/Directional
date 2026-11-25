@@ -5,11 +5,11 @@ Spherical regression using the ESAG distribution
 }
 
 \description{
-Spherical regression using the ESAG distribution, with constant or covariate-dependent anisotropy.
+Spherical regression using the ESAG distribution.
 }
 
 \usage{
-esag.reg(y, x, con = TRUE, gamx = FALSE, xnew = NULL, n.axes = 50, Q = NULL)
+esag.reg(y, x, con = TRUE, xnew = NULL, n.axes = 50, Q = NULL)
 }
 
 \arguments{
@@ -21,9 +21,6 @@ The predictor variable(s), they can be continuous, spherical, categorical or a m
 }
 \item{con}{
 Do you want the constant term in the regression?
-}
-\item{gamx}{
-If FALSE (default), the two \eqn{\gamma} parameters, which control the anisotropy, are constant. If TRUE, they depend on the covariates, \eqn{\bm{\gamma}(\bm{x}_i)=\bm{B}_2^T\bm{x}_i}.
 }
 \item{xnew}{
 If you have new data use it, otherwise leave it NULL.
@@ -38,7 +35,7 @@ If you already have a \eqn{3 \times 3} rotation matrix \eqn{\bm{Q}}, for example
 
 \details{
 The second model structure of Paine et al. (2020) is applied:
-\eqn{\bm{Q}^T\bm{y}_i \sim ESAG\left(\bm{\mu}(\bm{x}_i), \bm{\gamma}(\bm{x}_i)\right)}, with \eqn{\bm{\mu}(\bm{x}_i)=\bm{B}_1^T\bm{x}_i}, and \eqn{\bm{\gamma}} either constant or \eqn{\bm{\gamma}(\bm{x}_i)=\bm{B}_2^T\bm{x}_i}.
+\eqn{\bm{Q}^T\bm{y}_i \sim ESAG\left(\bm{\mu}(\bm{x}_i), \bm{\gamma}\right)}, with \eqn{\bm{\mu}(\bm{x}_i)=\bm{B}^T\bm{x}_i}, and the anisotropy parameters \eqn{\bm{\gamma}} constant, i.e. they do not depend on the covariates.
 
 The \eqn{\gamma} parameters are defined relative to a frame built from the first coordinate axis, \eqn{\bm{e}_1}. Hence, without the rotation \eqn{\bm{Q}}, the anisotropic model would depend on the coordinate system of the data. \eqn{\bm{Q}} is treated as a tuning parameter and is chosen to maximise the log-likelihood. The log-likelihood depends on \eqn{\bm{Q}} only through the axis \eqn{\pm \bm{Q}\bm{e}_1}, so the search is performed over a grid of axes on a hemisphere (a Fibonacci grid), and for each axis the model is fitted by maximum likelihood.
 
@@ -56,22 +53,22 @@ The log-likelihood of the regression model.
 A measure of fit of the estimated values, defined as \eqn{\sum_{i=1}^n\bm{y}_i^T\hat{\bm{y}}_i}.
 }
 \item{beta}{
-The beta coefficients \eqn{\bm{B}_1} of the mean direction, in the original coordinate system.
+The beta coefficients \eqn{\bm{B}} of the mean direction, in the original coordinate system.
 }
 \item{seb}{
 The standard errors of the beta coefficients.
 }
 \item{gamma}{
-The \eqn{\gamma} parameters: a vector of length 2 if gamx = FALSE, or a matrix \eqn{\bm{B}_2} with 2 columns if gamx = TRUE.
+The two \eqn{\gamma} parameters.
 }
 \item{seg}{
 The standard errors of the \eqn{\gamma} parameters.
 }
 \item{rho}{
-The \eqn{\rho \in (0,1]} values (the smallest eigenvalue of the covariance matrix), one for each observation.
+The \eqn{\rho \in (0,1]} value (the smallest eigenvalue of the covariance matrix).
 }
 \item{psi}{
-The angles of rotation \eqn{\psi}, one for each observation.
+The angle of rotation \eqn{\psi}.
 }
 \item{rl}{
 The norms of the fitted \eqn{\bm{\mu}(\bm{x}_i)} vectors, i.e. the concentration of each observation.
@@ -117,7 +114,7 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 %}
 
 \seealso{
-\code{\link{esag.mle}, \link{iag.reg}, \link{spml.reg}
+\code{\link{esag.mle}, \link{sespc.reg}, \link{iag.reg}, \link{spml.reg}
 }
 }
 
