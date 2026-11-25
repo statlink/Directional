@@ -28,29 +28,21 @@ esag.reg <- function(y, x, con = TRUE, xnew = NULL, n.axes = 50, Q = NULL) {
 
   if ( is.null(Q) ) {
     wa <- .esag.hemi.axes(n.axes)
-    lik <- numeric( nrow(wa) )
     best <- NULL
     for ( j in 1:nrow(wa) ) {
       Qj <- .esag.rot.e1(wa[j, ])         ## Qj %*% e1 = wa[j, ]
       mod <- .esag.reg2(y %*% Qj, X)      ## rows are t(Qj) %*% y_i
-      lik[j] <- mod$loglik
       if ( is.null(best) || mod$loglik > best$loglik ) {
         best <- mod
         Q <- Qj
       }
     }
-    search <- list(axes = wa, loglik = lik)
   } else {
     best <- .esag.reg2(y %*% Q, X)
-    search <- NULL
   }
 
-  .esag.backtransform(best, Q, y, X, con, xnew, search)
+  .esag.backtransform(best, Q, y, X, con, xnew)
 }
-
-
-
-
 
 
 ## ---------------------------------------------------------------------------
@@ -95,7 +87,7 @@ esag.reg <- function(y, x, con = TRUE, xnew = NULL, n.axes = 50, Q = NULL) {
 ## ---------------------------------------------------------------------------
 ## Rotate everything (except gamma, rho, psi) back to the original coordinates
 ## ---------------------------------------------------------------------------
-.esag.backtransform <- function(fit, Q, y, X, con, xnew, search) {
+.esag.backtransform <- function(fit, Q, y, X, con, xnew) {
   p <- dim(X)[2]
 
   ## mean regression coefficients: mu_orig = Q mu_z  =>  B_orig = B_z Q'
@@ -136,7 +128,7 @@ esag.reg <- function(y, x, con = TRUE, xnew = NULL, n.axes = 50, Q = NULL) {
         beta = be, seb = seb, gamma = gam, seg = seg,
         rho = ax$rho, psi = ax$psi, rl = rl, est = est,
         axis1 = axis1, axis2 = axis2, pred = pred,
-        Q = Q, covb = covb, search = search )
+        Q = Q, covb = covb )
 }
 
 

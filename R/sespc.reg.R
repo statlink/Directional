@@ -29,24 +29,20 @@ sespc.reg <- function(y, x, con = TRUE, xnew = NULL, n.axes = 50, Q = NULL) {
 
   if ( is.null(Q) ) {
     wa <- .sespc.hemi.axes(n.axes)
-    lik <- numeric( nrow(wa) )
     best <- NULL
     for ( j in 1:nrow(wa) ) {
       Qj <- .sespc.rot.e1(wa[j, ])         ## Qj %*% e1 = wa[j, ]
       mod <- .sespc.reg2(y %*% Qj, X)      ## rows are t(Qj) %*% y_i
-      lik[j] <- mod$loglik
       if ( is.null(best) || mod$loglik > best$loglik ) {
         best <- mod
         Q <- Qj
       }
     }
-    search <- list(axes = wa, loglik = lik)
   } else {
     best <- .sespc.reg2(y %*% Q, X)
-    search <- NULL
   }
 
-  .sespc.backtransform(best, Q, y, X, con, xnew, search)
+  .sespc.backtransform(best, Q, y, X, con, xnew)
 }
 
 
@@ -96,7 +92,7 @@ sespc.reg <- function(y, x, con = TRUE, xnew = NULL, n.axes = 50, Q = NULL) {
 ## ---------------------------------------------------------------------------
 ## Rotate everything (except theta, rho, psi) back to the original coordinates
 ## ---------------------------------------------------------------------------
-.sespc.backtransform <- function(fit, Q, y, X, con, xnew, search) {
+.sespc.backtransform <- function(fit, Q, y, X, con, xnew) {
   p <- dim(X)[2]
 
   ## mean regression coefficients: mu_orig = Q mu_z  =>  B_orig = B_z Q'
@@ -137,7 +133,7 @@ sespc.reg <- function(y, x, con = TRUE, xnew = NULL, n.axes = 50, Q = NULL) {
         beta = be, seb = seb, theta = gam, set = set,
         rho = ax$rho, psi = ax$psi, rl = rl, est = est,
         axis1 = axis1, axis2 = axis2, pred = pred,
-        Q = Q, covb = covb, search = search )
+        Q = Q, covb = covb )
 }
 
 

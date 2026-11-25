@@ -44,7 +44,7 @@ All returned quantities, except for \eqn{\theta}, \eqn{\rho} and \eqn{\psi}, are
 \value{
 A list including:
 \item{loglik}{
-The log-likelihood of the regression model.
+The log-likelihood of the final regression model, i.e. the one fitted with the selected \eqn{\bm{Q}}.
 }
 \item{fit.measure}{
 A measure of fit of the estimated values, defined as \eqn{\sum_{i=1}^n\bm{y}_i^T\hat{\bm{y}}_i}.
@@ -87,9 +87,6 @@ The selected rotation matrix \eqn{\bm{Q}}.
 }
 \item{covb}{
 The covariance matrix of all estimated parameters (first the \eqn{\theta} parameters, then the beta coefficients).
-}
-\item{search}{
-A list with the grid of axes and the log-likelihood obtained for each of them. This is NULL if "Q" was supplied.
 }
 }
 
