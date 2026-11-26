@@ -34,7 +34,7 @@ esag.nr <- function(y, tol = 1e-6, maxiters = 100) {
   ## through the frame of the rotated-back mu (gam1 = (a11 - a22)/2, gam2 = a12)
   mu <- as.vector( crossprod(rot, th[1:3]) )
   X <- .esag.frame(mu)
-  B <- t(X) %*% ( t(rot) %*% .esag.vinv(th[1:3], th[4:5]) %*% rot ) %*% X
+  B <- t(X) %*% ( t(rot) %*% .vinv(th[1:3], th[4:5]) %*% rot ) %*% X
   gam <- c( (B[1, 1] - B[2, 2]) / 2, B[1, 2] )
   nam <- c("mu1", "mu2", "mu3", "gam1", "gam2")
   names(mu) <- nam[1:3]  ;  names(gam) <- nam[4:5]
@@ -142,7 +142,7 @@ esag.nr <- function(y, tol = 1e-6, maxiters = 100) {
   m <- sqrt( sum(mu^2) )  ;  mu0 <- sqrt( mu[2]^2 + mu[3]^2 )
   cbind( c(-mu0^2, mu[1] * mu[2], mu[1] * mu[3]) / (mu0 * m), c(0, -mu[3], mu[2]) / mu0 )
 }
-.esag.vinv <- function(mu, gam) {
+.vinv <- function(mu, gam) {
   X <- .esag.frame(mu)
   r <- sqrt( 1 + sum(gam^2) )
   A <- matrix( c(gam[1] + r - 1, gam[2], gam[2], -gam[1] + r - 1), 2, 2 )
