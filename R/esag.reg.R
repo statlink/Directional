@@ -101,33 +101,34 @@ esag.reg <- function(y, x, con = TRUE, xnew = NULL, n.axes = 50, Q = NULL) {
   gam <- fit$gam
   seg <- se[1:2]
 
-  ## fitted mean directions and principal axes, in original coordinates
+  ## norms of the fitted mu(x_i) and the measure of fit, in original coordinates
   m <- X %*% be
   rl <- sqrt( Rfast::rowsums(m^2) )
-  est <- m / rl
-  ax <- .esag.axes(X %*% fit$be, gam)    ## computed in the rotated frame
-  axis1 <- ax$xi1 %*% t(Q)               ## direction of LEAST dispersion
-  axis2 <- ax$xi2 %*% t(Q)               ## direction of GREATEST dispersion
-  fitm <- sum(y * est)
+  fitm <- sum(y * m / rl)
+
+  ## rho and psi (relative to the frame induced by Q)
+  b <- sqrt( sum(gam^2) )
+  rho <- sqrt(b^2 + 1) - b
+  psi <- 0.5 * atan2( gam[2], gam[1] )
 
   nam <- if ( is.null( colnames(y) ) )  c("X", "Y", "Z")  else  colnames(y)
-  colnames(be) <- colnames(seb) <- colnames(est) <- colnames(axis1) <- colnames(axis2) <- nam
+  colnames(be) <- colnames(seb) <- nam
   rownames(be) <- rownames(seb) <- colnames(X)
   names(gam) <- names(seg) <- c("Gamma_1", "Gamma_2")
 
-  pred <- NULL
+  ## predicted mean directions for xnew (NULL if xnew is NULL)
+  est <- NULL
   if ( !is.null(xnew) ) {
     Xn <- model.matrix( ~., data.frame(xnew) )
     if ( !con )  Xn <- Xn[, -1, drop = FALSE]
     mu <- Xn %*% be
-    pred <- mu / sqrt( Rfast::rowsums(mu^2) )
-    colnames(pred) <- nam
+    est <- mu / sqrt( Rfast::rowsums(mu^2) )
+    colnames(est) <- nam
   }
 
-  list( loglik = fit$loglik, fit.measure = fitm,
+  list( loglik = fit$loglik, fit = fitm,
         beta = be, seb = seb, gamma = gam, seg = seg,
-        rho = ax$rho, psi = ax$psi, rl = rl, est = est,
-        axis1 = axis1, axis2 = axis2, pred = pred,
+        rho = rho, psi = psi, rl = rl, est = est,
         Q = Q, covb = covb )
 }
 
@@ -150,20 +151,6 @@ esag.reg <- function(y, x, con = TRUE, xnew = NULL, n.axes = 50, Q = NULL) {
                  x1b[, 3] * x2b[, 2] + x1b[, 2] * x2b[, 3], 2 * x1b[, 3] * x2b[, 3] )
   heta <- sqrt(gam1^2 + gam2^2 + 1) - 1
   1 + Rfast::rowsums( (gam2 * vinv + gam1 * (tx1 - tx2) + heta * (tx1 + tx2)) * za )
-}
-
-## rho, psi and the principal axes xi1, xi2 of eq. (13), per observation
-.esag.axes <- function(m, gam) {
-  m0 <- sqrt( m[, 2]^2 + m[, 3]^2 )
-  rl <- sqrt( Rfast::rowsums(m^2) )
-  x1b <- cbind( -m0^2, m[, 1] * m[, 2], m[, 1] * m[, 3] ) / (m0 * rl)
-  x2b <- cbind( 0, -m[, 3], m[, 2] ) / m0
-  b <- sqrt( sum(gam^2) )
-  rho <- sqrt(b^2 + 1) - b
-  psi <- 0.5 * atan2( gam[2], gam[1] )
-  xi1 <- cos(psi) * x1b + sin(psi) * x2b
-  xi2 <- -sin(psi) * x1b + cos(psi) * x2b
-  list(rho = rho, psi = psi, xi1 = xi1, xi2 = xi2)
 }
 
 ## approximately k axes, evenly spread on the hemisphere with first coordinate > 0

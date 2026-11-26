@@ -38,7 +38,7 @@ The model is \eqn{\bm{Q}^T\bm{y}_i \sim SESPC\left(\bm{\mu}(\bm{x}_i), \bm{\thet
 
 The SESPC distribution uses the same parametrisation as the ESAG distribution. The \eqn{\theta} parameters are defined relative to a frame built from the first coordinate axis, \eqn{\bm{e}_1}. Hence, without the rotation \eqn{\bm{Q}}, the anisotropic model would depend on the coordinate system of the data. \eqn{\bm{Q}} is treated as a tuning parameter and is chosen to maximise the log-likelihood. The log-likelihood depends on \eqn{\bm{Q}} only through the axis \eqn{\pm \bm{Q}\bm{e}_1}, so the search is performed over a grid of axes on a hemisphere (a Fibonacci grid), and for each axis the model is fitted by maximum likelihood.
 
-All returned quantities, except for \eqn{\theta}, \eqn{\rho} and \eqn{\psi}, are expressed in the original coordinate system of the data. The \eqn{\theta} parameters, and hence \eqn{\rho} and \eqn{\psi}, are relative to the frame induced by the selected \eqn{\bm{Q}}. The principal axes of the anisotropy, which do not depend on the coordinate system, are returned in the original coordinates.
+All returned quantities, except for \eqn{\theta}, \eqn{\rho} and \eqn{\psi}, are expressed in the original coordinate system of the data. The \eqn{\theta} parameters, and hence \eqn{\rho} and \eqn{\psi}, are relative to the frame induced by the selected \eqn{\bm{Q}}.
 }
 
 \value{
@@ -46,7 +46,7 @@ A list including:
 \item{loglik}{
 The log-likelihood of the final regression model, i.e. the one fitted with the selected \eqn{\bm{Q}}.
 }
-\item{fit.measure}{
+\item{fit}{
 A measure of fit of the estimated values, defined as \eqn{\sum_{i=1}^n\bm{y}_i^T\hat{\bm{y}}_i}.
 }
 \item{beta}{
@@ -71,15 +71,6 @@ The angle of rotation \eqn{\psi}.
 The norms of the fitted \eqn{\bm{\mu}(\bm{x}_i)} vectors, i.e. the concentration of each observation.
 }
 \item{est}{
-The fitted mean directions.
-}
-\item{axis1}{
-The principal axes of least dispersion, one for each observation, in the original coordinate system.
-}
-\item{axis2}{
-The principal axes of greatest dispersion, one for each observation, in the original coordinate system.
-}
-\item{pred}{
 The predicted mean directions for "xnew". This is NULL if "xnew" is NULL.
 }
 \item{Q}{
@@ -118,5 +109,5 @@ R implementation and documentation: Michail Tsagris \email{mtsagris@uoc.gr}.
 \examples{
 y <- rsespc( 150, rnorm(3), c(1, 1) )
 ## a small grid, so that the example runs quickly for CRAN's checks
-a <- sespc.reg(y, iris[, 4], n.axes = 5)
+a <- sespc.reg(y, iris[, 4], n.axes = 4)
 }
